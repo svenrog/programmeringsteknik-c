@@ -28,15 +28,20 @@ namespace Words_app
             string lowercaseString = enteredString.ToLower();
 
             string[] words = lowercaseString.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            int vowelCount = 0;
+            int wordCount = 0;
+            string longestWord = string.Empty;
 
-            foreach (var character in myString)
+            foreach (var word in words)
             {
+                foreach (var character in word)
+                { 
 
-                if (vowels.Contains(character)
-                {
-                    vowelsCount;
+                    if (vowels.Contains(character))
+                    {
+                        vowelCount++;
 
-                }
+                    }
 
                 for (var i = 0; i < myString.Length; i++)
                 {
