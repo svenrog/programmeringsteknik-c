@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Xml.Schema;
 
 namespace WordsApp
@@ -84,18 +85,20 @@ namespace WordsApp
                 }
                 else 
                 {
-                    if (charCounter >= currentLargest)
+                    if (charCounter > currentLargest)
                     {
                         currentLargest = Math.Max(charCounter, currentLargest);
                         charCounter = 0;
-                        positionIndex = i;
+                        positionIndex = ticker - currentLargest;
+                    }
+                    else {
+                        charCounter = 0;
                     }
                 }
-                Console.WriteLine(whitespace[ticker]);
                 ticker++;
                 
             }
-            Console.WriteLine("The largest word is " + input.Substring(positionIndex, currentLargest) + " at " + currentLargest + " characters");
+            Console.WriteLine("The largest word is \'" + input.Substring(positionIndex, currentLargest) + "\' at " + currentLargest + " characters");
 
         }
     }
