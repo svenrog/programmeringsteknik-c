@@ -42,8 +42,8 @@ namespace WordsApp
                 }
                 tmpIndex++;
             }
-            Console.WriteLine($"Strängen innehållder {countWords} antal ord");
-            Console.WriteLine($"Strängen innehållder {countVowels} antal vokaler");
+            Console.WriteLine($"Strängen innehållder {countWords} ord");
+            Console.WriteLine($"Strängen innehållder {countVowels} vokaler");
             Console.WriteLine($"Längsta ord är -  {inputArray[indexLongestWord]}");
         }
     }
