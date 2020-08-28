@@ -11,8 +11,9 @@ namespace WordsApp
 
             Console.WriteLine("Skriv valfri text: ");
             string userText = Console.ReadLine();
+            string lowercaseString = userText.ToLower();
 
-            string[] words = userText.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            string[] words = lowercaseString.Split(" ", StringSplitOptions.RemoveEmptyEntries);
             int vowelCount = 0;
             int wordCount = words.Length;
             string longestWord = string.Empty;
@@ -28,23 +29,15 @@ namespace WordsApp
                 }
 
                 if (word.Length > longestWord.Length) 
-                    {
-
-                    }
+                {
+                        longestWord = word;
+                }
             }
 
             Console.WriteLine("Texten är " + userText.Length + " tecken lång.");
+            Console.WriteLine("Antal vokaler är: " + vowelCount);
+            Console.WriteLine("Längsta ordet är: " + longestWord);
 
-            foreach(var character in userText)
-            {
-                if (vowels.Contains(character))
-                {
-                    Console.WriteLine("Texten innehåller: " + character);
-
-                }
-
-                Console.WriteLine("Längsta ordet är: " + longestWord);
-            }
 
             Console.ReadKey();
 
