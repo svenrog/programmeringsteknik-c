@@ -26,6 +26,11 @@ namespace WordsApp
                         vowelCount++;
                     }
                 }
+
+                if (word.Length > longestWord.Length) 
+                    {
+
+                    }
             }
 
             Console.WriteLine("Texten är " + userText.Length + " tecken lång.");
@@ -34,11 +39,11 @@ namespace WordsApp
             {
                 if (vowels.Contains(character))
                 {
-                    Console.WriteLine("Texten innehåller: " + );
+                    Console.WriteLine("Texten innehåller: " + character);
 
                 }
 
-                Console.WriteLine("Längsta ordet är: " + longestWord + "," +)
+                Console.WriteLine("Längsta ordet är: " + longestWord);
             }
 
             Console.ReadKey();
