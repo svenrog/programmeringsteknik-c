@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ChessApp
 {
@@ -9,28 +11,29 @@ namespace ChessApp
             //rita ut chakbräde (8x8 = 64 rutor) med ascii - tecken (░▓)
             //med console write/console writeline
             //for i for-loop
-            Console.WriteLine("░▓");
 
-            for (int y = 0; y < 8; y++)
+
+            //My solution
+            string oddNumber = "░░▓▓";
+            
+            string evenNumber = "▓▓░░";
+
+            for (int y = 0; y < 16; y++)
             {
-
-                if (int x = 0; x % 2 == 0)
+                for (int x = 0; x < 8; x++)
                 {
-
-                    Console.Write("░░");
-
+                    if (y % 2 == 1)
+                    {
+                        Console.Write(oddNumber);
+                    }
+                    else
+                    {
+                        Console.Write(evenNumber);
+                    }
                 }
-                else
-                {
-                    Console.Write("▓▓");
-                }
-
-                if (y == 8; int x = 0; x++)
-                {
-                     Console.Write("\n");
-                }
-
+              Console.Write('\n');
             }
+
 
         }
     }
