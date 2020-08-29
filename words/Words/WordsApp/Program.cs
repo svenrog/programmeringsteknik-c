@@ -7,7 +7,6 @@ namespace WordsApp
     {
         static void Main(string[] args)
         {
-            
             // Skriv en konsollapplikation som tar emot en skriven text.
             // Ha med antal ord
             // Antal vokaler
