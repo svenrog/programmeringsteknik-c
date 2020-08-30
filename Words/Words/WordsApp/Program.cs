@@ -11,40 +11,28 @@ namespace WordsApp
             input = input.ToLower();
             int countVowels = 0;
             string[] inputArray = input.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-            
             int countWords = inputArray.Length;
             char[] vowels = new char[] {'a', 'o', 'e', 'u', 'y', 'å', 'ä', 'ö', 'i'};
 
-            foreach (char stirngChar in input)
+            foreach (char character in input)
             {
-                if (vowels.Contains(stirngChar)) countVowels++;
+                if (vowels.Contains(character)) countVowels++;
             }
 
-            int[] countLettersInWords = new int[inputArray.Length];
-            for (int i = 0 ; i < inputArray.Length; i++)
-            {
-                countLettersInWords[i] = inputArray[i].Length;
-            }
-
-            int indexLongestWord = 0;
-            int tmpIndex = 0;
+            string longestWord = "";
             int longestWordLength = 0;
 
-            foreach (int countLettersInWord in countLettersInWords)
+            for (int i = 0 ; i < inputArray.Length; i++)
             {
-                foreach (int countLettersInWord2 in countLettersInWords)
+                if (inputArray[i].Length > longestWordLength)
                 {
-                    if (countLettersInWord > countLettersInWord2 & countLettersInWord > longestWordLength)
-                    {
-                        longestWordLength = countLettersInWord;
-                        indexLongestWord = tmpIndex;
-                    }
+                    longestWordLength = inputArray[i].Length;
+                    longestWord = inputArray[i];
                 }
-                tmpIndex++;
             }
             Console.WriteLine($"Strängen innehållder {countWords} ord");
             Console.WriteLine($"Strängen innehållder {countVowels} vokaler");
-            Console.WriteLine($"Längsta ord är -  {inputArray[indexLongestWord]}");
+            Console.WriteLine($"Längsta ord är -  {longestWord}");
         }
     }
 }
