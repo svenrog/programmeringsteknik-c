@@ -6,27 +6,25 @@ namespace ChessApp
     {
         static void Main(string[] args)
         {
-            char[] SignArray = new char[] {'░', '▓' };
-            for(int i = 0; i <= 4; i++)
+            char[] signArray = new char[] {'░', '▓' };
+            for(int i = 0; i < 4; i++)
             {
                 for (int y = 0; y< 8; y++)
                 {
                     int signIndex = y % 2;
-                    RenderSign(SignArray[signIndex]);
+                    RenderSign(signArray, signIndex);
                 }
                 Console.Write("\n");
                 for (int y = 1; y < 9; y++)
                 {
                     int signIndex = y % 2;
-                    RenderSign(SignArray[signIndex]);
+                    RenderSign(signArray, signIndex);
                 }
                 Console.Write("\n");
             }
-        static void RenderSign(char sign)
+            static void RenderSign(char[] signArray, int index)
             {
-                Console.Write(sign);
-                Console.Write(sign);
-                Console.Write(sign);
+                for (int i = 0; i<2; i++) Console.Write(signArray[index]);
             }
         }
     }
