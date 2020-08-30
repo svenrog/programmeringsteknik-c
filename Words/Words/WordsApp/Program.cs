@@ -17,38 +17,41 @@ namespace WordsApp
             // Vowel count
             // Longest word
 
-            int intVowelCount = 0;
-            int intWordCount = 0;
-            char[] charVowels = new char[] { 'a', 'o', 'i', 'e', 'u', 'y', 'å', 'ä', 'ö' };
-            string longestWord = string.Empty;
-
+            Console.Title = "WordApp";
             Console.WriteLine("Write a sentence please.");
-            string enteredString = Console.ReadLine();                        
-            string lowercaseString = enteredString.ToLower();
+            string enteredString = Console.ReadLine();
+            
+            string lowerCaseString = enteredString.ToLower();
+            string[] words = lowerCaseString.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            string strLongestWord = string.Empty;
 
-            string[] words = enteredString.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            char[] charVowels = new char[] { 'a', 'e', 'i', 'o', 'u', 'y', 'å', 'ä', 'ö' };
+
+            int intWordCount = words.Length;
+            int intVowelCount = 0;
 
             foreach (var word in words)
             {
-                foreach (var character in enteredString)
+                foreach (var character in word)
                 {
-                    if (charVowels.Contains(character));
+                    if (charVowels.Contains(character))
                     {
                         intVowelCount++;
                     }
                 }
 
-                if (word.Length > longestWord.Length)
+                if (word.Length > strLongestWord.Length)
                 {
-
+                    strLongestWord = word;
                 }
             }
 
-            Console.WriteLine($"Word count is: {intWordCount}");
-            Console.WriteLine($"Vowel count is: {intVowelCount}");
-            Console.WriteLine($"Longest word is: {intWordCount}");
+            Console.WriteLine($"\nThe amount of words are: {intWordCount}");
+            Console.WriteLine($"The amount of vowels are: {intVowelCount}");
+            Console.WriteLine($"The longest word is: {strLongestWord}");
 
-            Console.ReadLine();
+            Console.WriteLine("\nPress any key to quit program...");
+            Console.ReadKey(true);
         }
     }
 }
