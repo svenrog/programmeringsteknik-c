@@ -37,13 +37,13 @@ namespace Words_app
                 foreach (var character in word)
                 { 
 
-                    if (vowels.Contains(character))
+                    if (word.Contains(character))
                     {
                         vowelCount++;
-
+                        
                     }
 
-                for (var i = 0; i < myString.Length; i++)
+                for (var i = 0; i < words.Length; i++)
                 {
 
                 }
