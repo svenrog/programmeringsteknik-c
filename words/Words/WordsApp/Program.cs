@@ -9,8 +9,8 @@ namespace WordsApp
     {
         static void Main(string[] args)
         {
-            //skriv en konsolapplikation som tar emot en text //Writeline
-            //Antal ord som finns i texten //lista, antal vokaler, vilket är det längsta ordet i texten //.length
+            //skriv en konsolapplikation som tar emot en text //readline
+            //Antal ord som finns i texten //lista, antal vokaler //char , vilket är det längsta ordet i texten //.length
             //foreach (character in test)
 
 
@@ -43,8 +43,8 @@ namespace WordsApp
             }
 
             //Looking for the longest word
-            string[] stringOfWords = sentence.Split(' ');
-            string longestWord = stringOfWords.OrderByDescending(n => n.Length).First();
+            string[] wordsInSentence = sentence.Split(' ');
+            string longestWord = wordsInSentence.OrderByDescending(i => i.Length).First();
 
             Console.WriteLine($"There is {wordCounter} words in the sentence, it contains {vowelsCounter} vowels");
             Console.WriteLine($"and the longest word is: {longestWord}!");
