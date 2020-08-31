@@ -8,7 +8,7 @@ namespace ChessApp
     {
         static void Main(string[] args)
         {
-            //rita ut chakbräde (8x8 = 64 rutor) med ascii - tecken (░▓)
+            //rita ut schackbräde (8x8 = 64 rutor) med ascii - tecken (░▓)
             //med console write/console writeline
             //for i for-loop
 
@@ -18,9 +18,9 @@ namespace ChessApp
             
             string evenNumber = "▓▓░░";
 
-            for (int y = 0; y < 16; y++)
+            for (int y = 0; y < 8; y++)
             {
-                for (int x = 0; x < 8; x++)
+                for (int x = 0; x < 4; x++)
                 {
                     if (y % 2 == 1)
                     {
