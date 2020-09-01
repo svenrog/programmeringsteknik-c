@@ -40,7 +40,7 @@ namespace FlagApp
                 }
             }
             
-
+            /*
             static void DrawFlagUpper()
             {
                 for (var y = 0; y < 4; y++)
@@ -75,6 +75,8 @@ namespace FlagApp
             DrawMidFlag();
             DrawFlagUpper();
             Console.WriteLine();
+            */
+
             DrawFlag();
             Console.ReadLine();
         }
