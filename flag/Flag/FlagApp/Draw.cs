@@ -17,13 +17,13 @@ namespace FlagApp
         {
             for (int x = 0; x < 8; x++)
             {
-                for (int y = 0; y < 30; y++)
+                for (int y = 0; y < 40; y++)
                 {
                     if (y < 8)
                     {
                         DrawBlueBit();
                     }
-                    else if (y > 10 && y < 15)
+                    else if (y > 10 && y < 17)
                     {
                         DrawYellowBit();
                     }
@@ -38,11 +38,11 @@ namespace FlagApp
 
         static void DrawSingle()
         {
-            for (int x = 0; x < 7; x++)
+            for (int x = 0; x < 5; x++)
             {
-                for (int y = 0; y < 30; y++)
+                for (int y = 0; y < 40; y++)
                 {
-                    if (y < 30)
+                    if (y < 40)
                     {
                         DrawYellowBit();
                     }
@@ -54,13 +54,13 @@ namespace FlagApp
         static void DrawBlueBit()
         {
             Console.BackgroundColor = ConsoleColor.Blue;
-            Console.Write("-░░-");
+            Console.Write("░░");
         }
 
         static void DrawYellowBit()
         {
             Console.BackgroundColor = ConsoleColor.Yellow;
-            Console.Write("-░░-");
+            Console.Write("░░");
         }
 
     }
