@@ -16,27 +16,29 @@ namespace FlagApp
 
             //  Använda % 5,6 för mitten av flaggan??
 
-            //  Använda färg?
-            
             static void DrawFlag()
             {
-                for (var y = 0; y < 10; y++)
+                for (var height = 0; height < 10; height++)
                 {
                     Console.WriteLine();
-                    for (var x = 0; x < 16; x++)
+                    for (var length = 0; length < 16; length++)
                     {
-                        if (y == 4 || y == 5)
+                        if (height == 4 || height == 5)
                         {
-                            Console.Write("░░");
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.Write("  ");
                             continue;
                         }
                         
-                        if (x == 5 || x == 6)
+                        if (length == 5 || length == 6)
                         {
-                            Console.Write("░░");
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.Write("  ");
                             continue;
                         }
-                        Console.Write("▓▓");
+                        
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.Write("  ");
                     }
                 }
             }
