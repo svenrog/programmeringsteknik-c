@@ -1,5 +1,11 @@
 ﻿using System;
 
+/**
+* @author Edgar Runnman
+*
+* @date - 2020-09-01 
+*/
+
 namespace WhichHolidayApp
 {
     class Program
@@ -9,35 +15,23 @@ namespace WhichHolidayApp
         {
 			// Implementera följande flödesschema med metoder och användarinmatning
 			// https://pbs.twimg.com/media/EQup9bwXUAEK5a_?format=jpg&name=large
-			string[] questionArray = new string[11]
+
+			string[][] questionJaggedArray = new string[][]
 			{
-				"Äter man sill?",
-				"Dricker man must?",
-				"Är fika viktigt?",
-				"Kollar man TV kl 15:00?",
-				"Vispgrädde?",
-				"Importerat från USA av köpman?",
-				"Sylt till",
-				"Vad köper man?",
-				"Är man bakfull?",
-				"kollar man på Ivanhoe?",
-				"Vet folk orsaken till firandet?"
+				new string[] {"Äter man sill?", "ja", "nej", null, null},
+				new string[] {"Dricker man must?", "ja", "nej", null, "Midsommar"},
+				new string[] {"Är fika viktigt?", "ja", "nej", null, null},
+				new string[] {"Kollar man TV kl 15:00?", "ja", "nej", "Jul","Påsk"},
+				new string[] {"Vispgrädde?", "ja", "nej", null,"Kanebullens dag"},
+				new string[] {"Importerat från USA av köpman?", "ja", "nej", null, null},
+				new string[] {"Sylt till", "ja", "nej", null, null},
+				new string[] {"Vad köper man?", "rosor", "pumpor", "Våffeldagen","Fettisdagen"},
+				new string[] {"Är man bakfull?", "ja", "nej", "Alla hjärtans dag","Halloween"},
+				new string[] {"kollar man på Ivanhoe?", "ja", "nej", null, null},
+				new string[] {"Vet folk orsaken till firandet?", "ja", "nej", "Nyårsdagen", "Föra maj" }
 			};
-			string[,] answerArray = new string[11, 2]
-			{
-				{null, null},
-				{null, "Midsommar"},
-				{null, null},
-				{"Jul","Påsk"},
-				{null,"Kanebullens dag"},
-				{null,null},
-				{"Våffeldagen","Fettisdagen"},
-				{"Alla hjärtans dag","Halloween"},
-				{null,null},
-				{"Nyårsdagen","Föra maj"},
-				{"Kristihimmelsfärd","Nationaldagen"}
-			};
-			int[,] links = new int[11, 2]
+
+			int[,] links = new int[,]
 			{
 				{1,2},
 				{3,-1},
@@ -57,7 +51,7 @@ namespace WhichHolidayApp
 				Console.WriteLine("Vilken svensk högtid?");
 				while (hollyday == null)
 				{
-					pathIndex = GetAnswer(questionArray, answerArray, links, pathIndex);
+					pathIndex = GetAnswer(questionJaggedArray, links, pathIndex);
 				}
 				Console.WriteLine("Då är det " + hollyday);
 				hollyday = null;
@@ -65,18 +59,28 @@ namespace WhichHolidayApp
 			}
 		}
 
-		private static int GetAnswer(string[] questionArray, string[,] answerArray, int[,] links, int pathIndex)
+		private static int GetAnswer(string[][] questionJaggedArray, int[,] links, int pathIndex)
 		{
-			Console.WriteLine(questionArray[pathIndex]);
-			string input = Console.ReadLine();
+			string question = $"{questionJaggedArray[pathIndex][0]} (Svara med \"{questionJaggedArray[pathIndex][1]}\" eller \"{questionJaggedArray[pathIndex][2]}\")";
+			Console.WriteLine(question);
+			string input = null;
+			input = Console.ReadLine();
 			input = input.ToLower();
-			if (input == "ja")
+			if (input == questionJaggedArray[pathIndex][1])
 			{
-				hollyday = answerArray[pathIndex, 0];
+				hollyday = questionJaggedArray[pathIndex][3];
 				return links[pathIndex, 0];
 			}
-			hollyday = answerArray[pathIndex, 1];
-			return links[pathIndex, 1];
+			else if (input == questionJaggedArray[pathIndex][2])
+			{
+				hollyday = questionJaggedArray[pathIndex][4];
+				return links[pathIndex, 1];
+			}
+			else
+			{
+				Console.WriteLine("Fel i svaret, prova igen!");
+				return pathIndex;
+			}
 		}
 	}
 
