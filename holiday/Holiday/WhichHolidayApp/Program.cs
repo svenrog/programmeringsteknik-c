@@ -6,7 +6,7 @@
 * @date - 2020-09-01 
 */
 
-namespace WhichHolidayApp
+namespace HolidayApp
 {
     class Program
     {
@@ -24,11 +24,11 @@ namespace WhichHolidayApp
 				new string[] {"Kollar man TV kl 15:00?", "ja", "nej", "Jul","Påsk", null, null},
 				new string[] {"Vispgrädde?", "ja", "nej", null,"Kanebullens dag", "6", null},
 				new string[] {"Importerat från USA av köpman?", "ja", "nej", null, null, "7", "8"},
-				new string[] {"Sylt till", "ja", "nej", null, null, null, null},
-				new string[] {"Vad köper man?", "rosor", "pumpor", "Våffeldagen","Fettisdagen", null, null},
-				new string[] {"Är man bakfull?", "ja", "nej", "Alla hjärtans dag","Halloween", "9", "10"},
-				new string[] {"kollar man på Ivanhoe?", "ja", "nej", null, null, null, null},
-				new string[] {"Vet folk orsaken till firandet?", "ja", "nej", "Nyårsdagen", "Föra maj", null, null }
+				new string[] {"Sylt till", "ja", "nej", "Våffeldagen", "Fettisdagen", null, null},
+				new string[] {"Vad köper man?", "rosor", "pumpor", "Alla hjärtans dag", "Halloween", null, null},
+				new string[] {"Är man bakfull?", "ja", "nej", null, null, "9", "10"},
+				new string[] {"kollar man på Ivanhoe?", "ja", "nej", "Nyårsdagen", "Föra maj", null, null},
+				new string[] {"Vet folk orsaken till firandet?", "ja", "nej", "Kristihimmelsfärd", "Nationaldagen", null, null }
 			};
 
 			int pathIndex = 0;
