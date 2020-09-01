@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlagApp", "FlagApp\FlagApp.csproj", "{8B5D0987-74D0-4723-B9A6-1BAAC52484EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B5D0987-74D0-4723-B9A6-1BAAC52484EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B5D0987-74D0-4723-B9A6-1BAAC52484EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B5D0987-74D0-4723-B9A6-1BAAC52484EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5D0987-74D0-4723-B9A6-1BAAC52484EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {250BA50B-7D0B-403F-BEE4-93805BAEF337}
+	EndGlobalSection
+EndGlobal
