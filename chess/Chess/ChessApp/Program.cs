@@ -59,6 +59,11 @@ namespace ChessApp
             //-----------------------------------------------------------------------------------------
 
             // Lösning!
+
+            // Rita ett schackbräde med hjälp av dessa två tecken
+            // Använd gärna metoder
+            // %% använd (modulus)
+
             for (var y = 0; y < 8; y++)
             {
                 for (var x = 0; x < 16; x++)
