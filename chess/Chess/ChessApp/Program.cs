@@ -79,17 +79,19 @@ namespace ChessApp
                 {
                     for (var x = 0; x < size; x++)
                     {
-                        byte currentVóxelValue = voxelData[x, y, z];
+                        byte currentVoxelValue = voxelData[x, y, z];
                     }
                 }
 
             }
 
-            // Uddasidiga (jagged) arrayer
-            { int[][] jaggedArray = new int[3][]
-           {
-                    new int[] {1,3,5}, new int[] {}1,2,3,4}, new int[] { 1, 2, 3 }
-                };
+            //// Uddasidiga (jagged) arrayer
+            //{ int[][] jaggedArray = new int[3][]
+            //        {
+
+            //        new int[] { 1, 3, 5 }, new int[] { }1,2,3,4}, new int[] { 1, 2, 3 }
+            //    };
+    
         
             Console.ReadKey();
         }
