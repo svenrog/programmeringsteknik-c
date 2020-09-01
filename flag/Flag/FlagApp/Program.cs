@@ -17,14 +17,17 @@ namespace FlagApp
                     {                        
                         if (y < 10)
                         {
+                            Console.BackgroundColor = ConsoleColor.Blue;
                             Console.Write("-░░-");
                         }
                         else if (y > 10 && y < 16)
                         {
+                            Console.BackgroundColor = ConsoleColor.Yellow;
                             Console.Write("-▓▓-");
                         }
                         else
                         {
+                            Console.BackgroundColor = ConsoleColor.Blue;
                             Console.Write("-░░-");
                         }
                     }
@@ -40,6 +43,7 @@ namespace FlagApp
                     {
                         if (y < 30)
                         {
+                            Console.BackgroundColor = ConsoleColor.Yellow;
                             Console.Write("-▓▓-");
                         }
                     }
