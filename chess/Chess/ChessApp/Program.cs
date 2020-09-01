@@ -8,10 +8,9 @@ namespace ChessApp
     {
         static void Main(string[] args)
         {
-            //rita ut schackbräde (8x8 = 64 rutor) med ascii - tecken (░▓)
-            //med console write/console writeline
-            //for i for-loop
-
+            // Rita ett schackbräde med hjälp av dessa två tecken ░ ▓.
+            // Använd gärna metoder för att lösa problemet.
+            // Man behöver använda % (modulo)
 
             //My solution
             string oddNumber = "░░▓▓";
