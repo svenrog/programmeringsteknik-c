@@ -10,70 +10,17 @@ namespace ChessApp
             {
                 for (var x = 0; x < 16; x++)
                 {
-                    int characterIndex = (x / 2 + y) % 2;
-                    char character = characterIndex == 0 ? '░' : '▓';
+                    int intCharIndex = (x / 2 + y) % 2;
+                    char charCharacter = intCharIndex == 0 ? '░' : '▓';
 
-                    Console.Write(character);
+                    Console.Write(charCharacter);
                 }
                 Console.Write('\n');
             }
         }
         static void Main(string[] args)
         {
-            #region My try
-            //for (int i = 0; i < 8; i++)
-            //{
-            //    int intLinebreake = i % 8;
-            //    int intTest = i % 2;
-            //    int intLineswitch = 1;
-
-            //    if (intLineswitch % 2 == 1)
-            //    {
-            //        intLineswitch++;
-
-            //        if (intTest == 1)
-            //        {
-            //            Console.Write("░");
-            //        }
-            //        else
-            //        {
-            //            Console.Write("▓");
-            //        }
-            //    }
-            //    if (intLineswitch % 2 == 1)
-            //    {
-            //        if (intLineswitch % 2 == 1)
-            //        {
-            //            intLineswitch++;
-
-            //            if (intTest == 1)
-            //            {
-            //                Console.Write("░");
-            //            }
-            //            else
-            //            {
-            //                Console.Write("▓");
-            //            }
-            //            intLineswitch++;
-
-            //            if (intTest == 1)
-            //            {
-            //                Console.Write("░");
-            //            }
-            //            else
-            //            {
-            //                Console.Write("▓");
-            //            }
-
-            //        }
-
-
-
-            //        Console.ReadKey(true);
-
-            #endregion
-            //-----------------------------------------------------------------------------------------
-
+            
             // Lösning!
 
             // Rita ett schackbräde med hjälp av dessa två tecken
@@ -82,6 +29,8 @@ namespace ChessApp
 
             Console.Title = "Chessboard";
             ChessBoard();
+            //cb.Chessoard();
+            Console.WriteLine("\nPress any key to quit program...");
             Console.ReadKey(true);
         }
     }
