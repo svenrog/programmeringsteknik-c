@@ -11,7 +11,7 @@ namespace ChessApp
                 for (var x = 0; x < 16; x++)
                 {
                     int intCharIndex = (x / 2 + y) % 2;
-                    char charCharacter = intCharIndex == 0 ? '░' : '▓';
+                    char charCharacter = intCharIndex == 0 ? '░' :'▓';
 
                     Console.Write(charCharacter);
                 }
