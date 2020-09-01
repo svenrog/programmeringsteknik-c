@@ -12,7 +12,6 @@ namespace WordsApp
             int vowelCount = 0;
             string longestWord;
             
-
             var vowel = new char[] { 'a', 'i', 'e', 'o', 'u', 'y', 'å', 'ä', 'ö' };
             Console.WriteLine("Var vänlig och skriv in en text: ");
             //string input = Console.ReadLine();
@@ -30,7 +29,7 @@ namespace WordsApp
             var sorted = inputStringArray.OrderBy(n => n.Length);
             longestWord = sorted.LastOrDefault();
 
-            Console.WriteLine("Längsta ordet: " + inputStringArray.Max());
+            Console.WriteLine("Längsta ordet: " + longestWord);
             Console.ReadKey();
         }
     }
