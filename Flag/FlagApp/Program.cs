@@ -16,6 +16,7 @@ namespace FlagApp
 
             //  Använda % 5,6 för mitten av flaggan??
 
+            //  Använda färg?
             
             static void DrawFlag()
             {
