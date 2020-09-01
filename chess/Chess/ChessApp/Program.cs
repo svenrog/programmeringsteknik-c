@@ -4,8 +4,23 @@ namespace ChessApp
 {
     class Program
     {
+        static void ChessBoard()
+        {
+            for (var y = 0; y < 8; y++)
+            {
+                for (var x = 0; x < 16; x++)
+                {
+                    int characterIndex = (x / 2 + y) % 2;
+                    char character = characterIndex == 0 ? '░' : '▓';
+
+                    Console.Write(character);
+                }
+                Console.Write('\n');
+            }
+        }
         static void Main(string[] args)
         {
+            #region My try
             //for (int i = 0; i < 8; i++)
             //{
             //    int intLinebreake = i % 8;
@@ -56,6 +71,7 @@ namespace ChessApp
 
             //        Console.ReadKey(true);
 
+            #endregion
             //-----------------------------------------------------------------------------------------
 
             // Lösning!
@@ -64,17 +80,8 @@ namespace ChessApp
             // Använd gärna metoder
             // %% använd (modulus)
 
-            for (var y = 0; y < 8; y++)
-            {
-                for (var x = 0; x < 16; x++)
-                {
-                    int characterIndex = (x / 2 + y) % 2;
-                    char character = characterIndex == 0 ? '░' : '▓';
-
-                    Console.Write(character);
-                }
-                Console.Write('\n');
-            }
+            Console.Title = "Chessboard";
+            ChessBoard();
             Console.ReadKey(true);
         }
     }
