@@ -16,7 +16,7 @@ namespace HolidayApp
 			// Implementera följande flödesschema med metoder och användarinmatning
 			// https://pbs.twimg.com/media/EQup9bwXUAEK5a_?format=jpg&name=large
 
-			string[][] questionJaggedArray = new string[][]
+			string[][] questionJaggedArray = 
 			{
 				new string[] {"Äter man sill?", "ja", "nej", null, null, "1", "2"},
 				new string[] {"Dricker man must?", "ja", "nej", null, "Midsommar", "3", null},
