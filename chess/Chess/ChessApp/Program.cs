@@ -21,39 +21,57 @@ namespace ChessApp
             }
 
             #region Mitt Försök
-            /*
+            Console.WriteLine();
+            Console.WriteLine("Mitt Försök");
             for (int i = 1; i < 65; i++)
             {
                 int lineBreak = i % 8;
-                int test = i % 2;
-                int lineSwitch = 0;
+                int chess = i % 2;
+                //int lineSwitch = 1;
 
-                if (lineSwitch % 2 == 1)
+                if (i % 2 == 1)
                 {
                     if (lineBreak == 1)
                     {
                         Console.Write("\n");
-                        lineSwitch++;
                     }
-                    if (test == 1)
-                        Console.Write('▓');
+                    if (chess == 1)
+                    {
+                        if (chess != 1)
+                            Console.Write('▓');
+                        else
+                            Console.Write('░');
+                    }
                     else
-                        Console.Write('░');
+                    {
+                        if (chess != 1)
+                            Console.Write('▓');
+                        else
+                            Console.Write('░');
+                    }
                 }
-                else //if (lineSwitch % 2 == 1)
+                else
                 {
                     if (lineBreak == 1)
                     {
                         Console.Write("\n");
-                        lineSwitch++;
                     }
-                    if (test == 0)
-                        Console.Write('▓');
+                    if (chess == 1)
+                    {
+                        if (chess != 1)
+                            Console.Write('▓');
+                        else
+                            Console.Write('░');
+                    }
                     else
-                        Console.Write('░');
+                    {
+                        if (chess != 1)
+                            Console.Write('▓');
+                        else
+                            Console.Write('░');
+                    }
                 }
             }
-            */
             #endregion
         }
     }

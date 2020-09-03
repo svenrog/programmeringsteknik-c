@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WhichHolidayApp
+﻿namespace WhichHolidayApp
 {
     class Program
     {
@@ -8,14 +6,14 @@ namespace WhichHolidayApp
         {
             // Implementera följande flödesschema med metoder och användarinmatning
             // https://pbs.twimg.com/media/EQup9bwXUAEK5a_?format=jpg&name=large
-            
+
             Console.WriteLine("Äter man sill? (y/n)");
             int sillAnswer = Inmatning();
 
         }
         static int Inmatning()
         {
-            bool exitloop = true
+            bool exitloop = true;
             do
             {
                 exitloop = true;
@@ -31,7 +29,7 @@ namespace WhichHolidayApp
                     exitloop = false;
                 }
             }
-            while(true)
+            while (true)
         }
         static string Fråga(int svar)
         {
