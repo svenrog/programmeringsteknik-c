@@ -4,12 +4,28 @@ namespace FlagApp
 {
     class Program
     {
+        
+        static void Main(string[] args)
+        {
+            // Skapa en applikation som ritar ut svenska flaggan
+            // Använd metoder för att göra utritningen generell
+
+            Console.Title = "Svenska flaggan";
+
+            YellowAndBlue();
+            SweFlagYellow();
+            YellowAndBlue();
+
+            Console.WriteLine("\nPress any key to quit program...");
+            Console.ReadKey(true);
+        }
         static void YellowAndBlue()
         {
             char charYellow = '▓';
             char charBlue = '░';
 
-            int intStopRendering = 0;
+            int intRenderingIndex = 0;
+            bool boolRenderingStop = true;
 
             do
 
@@ -29,9 +45,9 @@ namespace FlagApp
                     }
 
                     Console.Write('\n');
-                    intStopRendering++;
+                    intRenderingIndex++;
 
-                } while (intStopRendering != 8);
+                } while (boolRenderingStop);
         }
         static void SweFlagYellow()
         {
@@ -46,20 +62,6 @@ namespace FlagApp
                 }
                 Console.Write('\n');
             }
-        }
-        static void Main(string[] args)
-        {
-            // Skapa en applikation som ritar ut svenska flaggan
-            // Använd metoder för att göra utritningen generell
-
-            Console.Title = "Svenska flaggan";
-
-            YellowAndBlue();
-            SweFlagYellow();
-            YellowAndBlue();
-
-            Console.WriteLine("\nPress any key to quit program...");
-            Console.ReadKey(true);
         }
     }
 }
