@@ -14,7 +14,7 @@ namespace ChessApp
                 _charachterIndex = intCharIndex;
                 _charachter = charCharacter;
 
-                for (var y = 0; y < 8; y++)
+            for (var y = 0; y < 8; y++)
                 {
                     for (var x = 0; x < 16; x++)
                     {

@@ -31,31 +31,29 @@ namespace FlagApp
             bool boolRenderingStop = true;
 
             do
-
-                for (var x = 0; x < 1; x++)
+            {
+                for (var y = 0; y < 27; y++)
                 {
-                    for (var y = 0; y < 27; y++)
-                    {
-                        Console.Write(charYellow);
-                    }
-                    for (var y = 27; y < 37; y++)
-                    {
-                        Console.Write(charBlue);
-                    }
-                    for (var y = 38; y < 82; y++)
-                    {
-                        Console.Write(charYellow);
-                    }
+                    Console.Write(charYellow);
+                }
+                for (var y = 27; y < 37; y++)
+                {
+                    Console.Write(charBlue);
+                }
+                for (var y = 38; y < 82; y++)
+                {
+                    Console.Write(charYellow);
+                }
 
-                    Console.Write('\n');
-                    intRenderingIndex++;
+                Console.Write('\n');
+                intRenderingIndex++;
 
-                    if (intRenderingIndex == 9)
-                    {
-                        boolRenderingStop = false;
-                    }
+                if (intRenderingIndex == 9)
+                {
+                    boolRenderingStop = false;
+                }
 
-                } while (boolRenderingStop);
+            } while (boolRenderingStop);
         }
         static void SweFlagYellow()
         {
