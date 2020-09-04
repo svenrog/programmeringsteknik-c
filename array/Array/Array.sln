@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Words app", "Words app\Words app.csproj", "{C5EDED94-0ECF-4AD7-A11F-D79715FB3C06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayExercise", "ArrayExercise\ArrayExercise.csproj", "{637579E7-938E-437F-8FFA-C76F5EB2399C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C5EDED94-0ECF-4AD7-A11F-D79715FB3C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5EDED94-0ECF-4AD7-A11F-D79715FB3C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5EDED94-0ECF-4AD7-A11F-D79715FB3C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5EDED94-0ECF-4AD7-A11F-D79715FB3C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{637579E7-938E-437F-8FFA-C76F5EB2399C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{637579E7-938E-437F-8FFA-C76F5EB2399C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{637579E7-938E-437F-8FFA-C76F5EB2399C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{637579E7-938E-437F-8FFA-C76F5EB2399C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D9A2FF46-12AE-41A5-BFD9-4897F91E9C9A}
+		SolutionGuid = {BA503817-3D46-49B1-A33B-3A136894B0CA}
 	EndGlobalSection
 EndGlobal
