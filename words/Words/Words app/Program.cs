@@ -16,38 +16,45 @@ namespace Words_app
             // Vowel count
             // Longest word
 
-           
+
 
             Console.WriteLine("Skriv en mening av ord: ");
-            
-           
 
             char[] vowels = new char[] { 'a', 'e', 'i', 'o', 'u', 'y', 'å', 'ä', 'ö' };
 
             string enteredString = Console.ReadLine();
-            string lowercaseString = enteredString.ToLower();
+            string lowerCaseString = enteredString.ToLower();
 
-            string[] words = lowercaseString.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            string[] words = lowerCaseString.Split(" ", StringSplitOptions.RemoveEmptyEntries);
             int vowelCount = 0;
             int wordCount = 0;
             string longestWord = string.Empty;
 
-            foreach (var word in words)
+            foreach (string word in words)
             {
-                foreach (var character in word)
-                { 
+                wordCount++;
+                if (word.Length > longestWord.Length)
+                {
+                    longestWord = word;
+                }
 
-                    if (word.Contains(character))
+            }
+            
+            foreach (char letter in lowerCaseString)
+            {
+                foreach (char vowel in vowels)
+                {
+                    if (letter == vowel)
                     {
                         vowelCount++;
-                        
                     }
-
-                for (var i = 0; i < words.Length; i++)
-                {
-
                 }
+            }
+            Console.WriteLine($"Antal ord: {wordCount}");
+            Console.WriteLine($"Antal vokaler: {vowelCount}");
+            Console.WriteLine($"Längsta ordet är: {longestWord} som har {longestWord.Length} bokstäver.");
+
+            Console.ReadKey();
         }
-        
     }
 }

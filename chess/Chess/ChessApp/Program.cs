@@ -1,17 +1,9 @@
-﻿using System;
-
-namespace ChessApp
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
+﻿
+        
             // Rita ett schackbräde med hjälp av dessa två tecken ░ ▓.
             // Använd gärna metoder för att lösa problemet.
             // Man behöver använda % (modulo)
-        }
-    }
-}
+       
 using System;
 using System.Runtime.CompilerServices;
 
@@ -57,14 +49,25 @@ namespace ChessApp
             //    Console.Write(square);
             // }
 
-            for (var y = 0; y < 8; y++)
+            for (var y = 0; y < 4; y++)
             {
-                for (var x = 0; x < 16; x++)
+                for (var x = 0; x < 4; x++)
                 {
-                    int characterIndex = (x / 2 + y) % 2;
-                    char character = characterIndex == 0 ? '▓' : '░';
-
-                    Console.Write(character);
+                    // int characterIndex = (x / 2 + y) % 2;
+                    // char character = characterIndex == 0 ? '▓' : '░';
+                    
+                    char character = '▓';
+                    char character2 = '░';
+                    RenderaSign(character, character2);
+                    
+                }
+                Console.Write("\n");
+                for (var x = 0; x < 4; x++)
+                {
+                    char character = '▓';
+                    char character2 = '░';
+                    RenderaSign(character2, character);
+                    
                 }
                 Console.Write('\n');
             }
@@ -109,5 +112,13 @@ namespace ChessApp
         
             Console.ReadKey();
         }
+        static void RenderaSign(char sign, char sign2)
+        {
+            Console.Write(sign);
+            Console.Write(sign);
+            Console.Write(sign2);
+            Console.Write(sign2);
+        }
     }
+
 }
