@@ -24,6 +24,9 @@ namespace FlagApp
             char charYellow = '▓';
             char charBlue = '░';
 
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+
             int intRenderingIndex = 0;
             bool boolRenderingStop = true;
 
@@ -46,6 +49,11 @@ namespace FlagApp
 
                     Console.Write('\n');
                     intRenderingIndex++;
+
+                    if (intRenderingIndex == 9)
+                    {
+                        boolRenderingStop = false;
+                    }
 
                 } while (boolRenderingStop);
         }
