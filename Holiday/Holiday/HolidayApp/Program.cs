@@ -1,69 +1,102 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
+using System.Linq;
+using System.Reflection.Metadata.Ecma335;
+using System.IO;
 
 namespace HolidayApp
 {
     class Program
     {
+        public List<bool> inputTrueOrFalse = new List<bool>();
+
+        //frågar om input, svarar true för "ja" och false för "nej"
+        public bool ReadInput()
+        {
+            string input = null;
+            while (input != "ja" && input != "nej")
+            {
+                Console.Write("Svara med \"ja\" eller \"nej\"\n\n");
+                input = Console.ReadLine();
+            }
+            if (input == "ja")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Sparar input i en array för att jämföra i textlistan
+        public bool[] AddToArray(bool input)
+        {
+            inputTrueOrFalse.Add(input);
+            bool[] boolArray = inputTrueOrFalse.ToArray();
+            return boolArray;
+        }
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Vilken svensk högtid?");
+            Program program = new Program();
 
-            var input = Console.ReadLine();
-
-            //var question = "";
-
-            //true / false eller 1 / 0 ??
-            bool answer = true;
-            int[,] answersArray = new int[1, 0];
-
-            string[] holidaysArray = new string[11];
-
-            string[] questionArray = new string[10];
-
-            #region Answers
-            holidaysArray[0] = "Jul";
-            holidaysArray[1] = "Påsk";
-            holidaysArray[2] = "Midsommar";
-            holidaysArray[3] = "Våffeldagen";
-            holidaysArray[4] = "Fettisdagen";
-            holidaysArray[5] = "Kanelbullens dag";
-            holidaysArray[6] = "Alla hjärtans dag";
-            holidaysArray[7] = "Halloween";
-            holidaysArray[8] = "Nyårsdagen";
-            holidaysArray[9] = "Första maj";
-            holidaysArray[10] = "Kristi himmelsfärd";
-            holidaysArray[11] = "National-dagen";
+            #region Dictionary
+            Dictionary<string, bool[]> TextList = new Dictionary<string, bool[]>();
+            TextList.Add("Äter man sill?", new bool[] { false });
+            TextList.Add("Dricker man must?", new bool[] { false, true });
+            TextList.Add("Är fika viktigt?", new bool[] { false, false });
+            TextList.Add("Kollar man Tv kl.15.00?", new bool[] { false, true, true });
+            TextList.Add("Midsommar", new bool[] { false, true, false });
+            TextList.Add("Jul", new bool[] { false, true, true, true });
+            TextList.Add("Påsk", new bool[] { false, true, true, false });
+            TextList.Add("Vispgrädde?", new bool[] { false, false, true });
+            TextList.Add("Importerat från Usa av köpmän?", new bool[] { false, false, false });
+            TextList.Add("Sylt till?", new bool[] { false, false, true, true });
+            TextList.Add("Kanelbullens dag", new bool[] { false, false, true, false });
+            TextList.Add("Våffeldagen", new bool[] { false, false, true, true, true });
+            TextList.Add("Fettisdagen", new bool[] { false, false, true, true, false });
+            TextList.Add("Vad köper man?", new bool[] { false, false, false, true });
+            TextList.Add("Är man bakfull?", new bool[] { false, false, false, false });
+            TextList.Add("Alla hjärtans dag", new bool[] { false, false, false, true, true });
+            TextList.Add("Halloween", new bool[] { false, false, false, true, false });
+            TextList.Add("Kollar man på Ivanhoe?", new bool[] { false, false, false, false, true });
+            TextList.Add("Vet folk orsaken till firandet?", new bool[] { false, false, false, false, false });
+            TextList.Add("Nyårsdagen", new bool[] { false, false, false, false, true, true });
+            TextList.Add("Första Maj", new bool[] { false, false, false, false, true, false });
+            TextList.Add("Kristi himmelsfärd", new bool[] { false, false, false, false, false, true });
+            TextList.Add("National-dagen", new bool[] { false, false, false, false, false, false });
             #endregion
 
-            #region Questions
-            questionArray[0] = "Äter man sill?";
-            questionArray[1] = "Dricker man must?";
-            questionArray[2] = "Kollar man TV kl.15.00?";
-            questionArray[3] = "Är fika viktigt?";
-            questionArray[4] = "Vispgrädde?";
-            questionArray[5] = "Sylt till?";
-            questionArray[6] = "Importerat från USA av köpmän?";
-            questionArray[7] = "Vad köper man?";
-            questionArray[8] = "Är man bakfull?";
-            questionArray[9] = "Kollar man på Ivanhoe?";
-            questionArray[10] = "Vet folk orsaken till firandet?";
-            #endregion
+            bool[] boolArray = new bool[] { };
 
-            /*
-            static void QuestionAsk(string question)
-            {
-                Console.WriteLine(question);
-            }
+            boolArray = program.AddToArray(false);
 
-            static void QuestionAnswer(bool answer)
+            //går igenom varje sträng och kontrollerar vilken fråga vi är på baserat på ja eller nej svar
+
+            foreach (KeyValuePair<string, bool[]> text in TextList)
             {
-                if (answer == true)
+
+                bool isEqual = Enumerable.SequenceEqual(text.Value, boolArray);
+
+                while (isEqual)
                 {
-                    QuestionAsk();
+                    if (!text.Key.Contains("?"))
+                    {
+                        Console.WriteLine("Högtiden du tänker på är: " + text.Key);
+                        goto End;
+                    }
+                    Console.WriteLine(text.Key + "\n");
+                    boolArray = program.AddToArray(program.ReadInput());
+                    isEqual = Enumerable.SequenceEqual(text.Value, boolArray);
+                    Console.Clear();
                 }
             }
-            */
+        End:
+            Console.ReadKey();
         }
     }
 }
