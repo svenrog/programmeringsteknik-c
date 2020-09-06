@@ -24,11 +24,11 @@ namespace FlagApp
             char charYellow = '▓';
             char charBlue = '░';
 
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
 
             int intRenderingIndex = 0;
-            bool boolRenderingStop = true;
+            bool continueRendering = true;
 
             do
             {
@@ -50,10 +50,10 @@ namespace FlagApp
 
                 if (intRenderingIndex == 9)
                 {
-                    boolRenderingStop = false;
+                    continueRendering = false;
                 }
 
-            } while (boolRenderingStop);
+            } while (continueRendering);
         }
         static void SweFlagYellow()
         {
