@@ -9,6 +9,7 @@ namespace ChessApp
             // Rita ett schackbräde med hjälp av dessa två tecken ░ ▓.
             // Använd gärna metoder för att lösa problemet.
             // Man behöver använda % (modulo)
+            //Kommentar
         }
     }
 }
