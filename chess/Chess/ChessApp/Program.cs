@@ -12,7 +12,7 @@ namespace ChessApp
             Console.WriteLine("▓▓░░▓▓░░▓▓░░▓▓░░");
             Console.WriteLine("░░▓▓░░▓▓░░▓▓░░▓▓");
             Console.WriteLine("▓▓░░▓▓░░▓▓░░▓▓░░");
-            Console.WriteLine("░░▓▓░░▓▓░░▓▓░░▓▓");
+            Console.WriteLine("░░▓▓░░▓▓░░▓▓░░▓▓"); //kommentar
             Console.WriteLine("▓▓░░▓▓░░▓▓░░▓▓░░");
             Console.WriteLine("░░▓▓░░▓▓░░▓▓░░▓▓");
             Console.WriteLine("This board was hardcoded.");
