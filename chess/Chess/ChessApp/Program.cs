@@ -6,9 +6,50 @@ namespace ChessApp
     {
         static void Main(string[] args)
         {
-            // Rita ett schackbräde med hjälp av dessa två tecken ░ ▓.
-            // Använd gärna metoder för att lösa problemet.
-            // Man behöver använda % (modulo)
+            //64 + 8 Line skips = 72
+            for (int i = 1; i < 72; i++)
+            {
+                //Even number
+                if (i % 2 == 0)
+                {
+                    if (i % 9 == 0)
+                    {
+                        AddNewLine();
+                    }
+                    else
+                    {
+                        PaintWhite();
+                    }
+
+                }
+                //Odd number
+                else
+                {
+                    if (i % 9 == 0)
+                    {
+                        AddNewLine();
+                    }
+                    else
+                    {
+                        PaintBlack();
+                    }
+                }
+            }
+            Console.ReadLine();
+        }
+        static void PaintWhite()
+        {
+            Console.Write("▓▓");
+        }
+
+        static void PaintBlack()
+        {
+            Console.Write("░░");
+        }
+
+        static void AddNewLine()
+        {
+            Console.WriteLine("");
         }
     }
 }
