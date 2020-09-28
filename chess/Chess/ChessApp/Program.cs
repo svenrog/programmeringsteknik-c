@@ -6,7 +6,8 @@ namespace ChessApp
     {
         static void Main(string[] args)
         {
-            //64 + 8 Line skips = 72
+            //64 + 8 Line skips = 72 
+            //..
             for (int i = 1; i < 72; i++)
             {
                 //Even number
