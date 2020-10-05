@@ -22,10 +22,16 @@ namespace Search.Client
         {
             var client = SearchClientFactory.CreateClient(options);
 
-            // 1. Hitta recept som innehåller ordet "fisk"
-            // 2. Hitta recept som är upplagda av Per Morberg
-            // 3. Hitta recept baserat på något som innehåller söksträng från parameter.
-            // 4. Sortera sökträffarna från föregående efter rating.
+            // Denna övning använder ElasticSearch
+            // https://www.elastic.co/
+
+            // Dokumentation över hur man ställer frågor
+            // https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/writing-queries.html
+
+            // 1. Hitta recept som innehåller ordet "fisk".
+            // 2. Hitta recept som är upplagda av Per Morberg.
+            // 3. Sortera sökträffarna efter rating.
+            // 4. Hitta recept som har en tillagningstid under 10 minuter.
 
             return 0;
         }

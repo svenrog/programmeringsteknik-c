@@ -1,6 +1,6 @@
 ﻿using Nest;
 using Search.Common.Models;
-using System.Collections.Generic;
+using System;
 
 namespace Search.Client.Services
 {
@@ -16,9 +16,14 @@ namespace Search.Client.Services
             return Index<RecipeDocument>(document);
         }
 
-        public virtual ISearchResponse<RecipeDocument> Search(string query, int maximumHits = 10, List<ISort> sort = null)
+        public virtual ISearchResponse<RecipeDocument> Search(ISearchRequest<RecipeDocument> request)
         {
-            return Search<RecipeDocument>(query, maximumHits, sort);
+            return Search<RecipeDocument>(request);
+        }
+
+        public virtual ISearchResponse<RecipeDocument> Search(Func<SearchDescriptor<RecipeDocument>, ISearchRequest> selector = null)
+        {
+            return Search<RecipeDocument>(selector);
         }
 
         private void EnsureDefaultIndex(ElasticClient elasticClient)
