@@ -20,11 +20,9 @@ namespace Search.Client.Services
             if (response.IsValid)
                 return response;
 
-            var path = new DocumentPath<T>(document);
-            var request = new UpdateRequest<T, T>(document);
             var id = new Id(document);
-                
-            return _elasticClient.Update(DocumentPath<T>.Id(id), i => i.Doc(document));
+            
+            return _elasticClient.Update(DocumentPath<T>.Id(id), d => d.Doc(document));
         }
 
         protected virtual ISearchResponse<T> Search<T>(string query, int maximumHits = 10, List<ISort> sort = null)
