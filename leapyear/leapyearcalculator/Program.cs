@@ -9,10 +9,16 @@ namespace leapyearcalculator
             // Räkna ut hur många skottår som passerat mellan två inmatade värden.
 
             // DateTime.IsLeapYear(year) är en metod man kan använda.
-            Calculations LeapYears = new Calculations();
+            int firstYear = int.Parse(args[0]);
+            int secondYear = int.Parse(args[1]);
 
-            int totalLeapYears = LeapYears.CalcLeap(1992, 2020);
-            Console.WriteLine(totalLeapYears);
+            int maxYear = Math.Max(firstYear, secondYear);
+            int minYear = Math.Min(firstYear, secondYear);
+
+            Calculations leapYears = new Calculations();
+
+            int totalLeapYears = leapYears.CalcLeap(minYear, maxYear);
+            Console.WriteLine($"Total amount of leap years: {totalLeapYears} found between {firstYear} and {secondYear}");
         }
     }
 }
