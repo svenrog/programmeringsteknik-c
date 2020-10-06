@@ -35,5 +35,17 @@ namespace Search.Client.Services
         {
             return _elasticClient.Search(selector);
         }
-}
+
+        protected virtual CountResponse Count<T>(ICountRequest<T> request)
+            where T : class
+        {
+            return _elasticClient.Count(request);
+        }
+
+        protected virtual CountResponse Count<T>(Func<CountDescriptor<T>, ICountRequest> selector = null)
+            where T : class
+        {
+            return _elasticClient.Count(selector);
+        }
+    }
 }

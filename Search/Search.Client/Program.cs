@@ -29,8 +29,8 @@ namespace Search.Client
             // https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/writing-queries.html
 
             // 1. Hitta 20 recept som innehåller ordet "fisk".
-            // 2. Hitta recept som är upplagda av Per Morberg.
-            // 3. Sortera sökträffarna efter rating.
+            // 2. Sortera sökträffarna efter rating.
+            // 3. Räkna alla recept som är upplagda av Per Morberg.
             // 4. Hitta recept som har en tillagningstid under 10 minuter.
 
             return 0;

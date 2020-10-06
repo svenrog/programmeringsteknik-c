@@ -26,6 +26,16 @@ namespace Search.Client.Services
             return Search<RecipeDocument>(selector);
         }
 
+        public virtual CountResponse Count(ICountRequest<RecipeDocument> request)
+        {
+            return Count<RecipeDocument>(request);
+        }
+
+        public virtual CountResponse Count(Func<CountDescriptor<RecipeDocument>, ICountRequest> selector = null)
+        {
+            return Count<RecipeDocument>(selector);
+        }
+
         private void EnsureDefaultIndex(ElasticClient elasticClient)
         {
             var settings = elasticClient.ConnectionSettings;
