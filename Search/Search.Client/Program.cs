@@ -28,7 +28,7 @@ namespace Search.Client
             // Dokumentation över hur man ställer frågor
             // https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/writing-queries.html
 
-            // 1. Hitta recept som innehåller ordet "fisk".
+            // 1. Hitta 20 recept som innehåller ordet "fisk".
             // 2. Hitta recept som är upplagda av Per Morberg.
             // 3. Sortera sökträffarna efter rating.
             // 4. Hitta recept som har en tillagningstid under 10 minuter.
