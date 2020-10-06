@@ -1,6 +1,9 @@
 ﻿using Search.Common.Models;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
@@ -21,9 +24,10 @@ namespace Search.Common.Services
                 Description = data.Description,
                 Image = data.Image,
                 Rating = data.AggregateRating?.RatingValue ?? 0,
-                Ingredients = string.Join("\n", data.RecipeIngredient),
-                Steps = string.Join("\n", data.RecipeInstructions.Select(x => x.Text)),
                 TimeToCook = GetTime(data.TotalTime),
+                Ingredients = MapList(data.RecipeIngredient),
+                Steps = MapList(data.RecipeInstructions, x => x.Text),
+                Categories = MapList(data.Categories, x => x.Name)
             };
         }
 
@@ -49,6 +53,22 @@ namespace Search.Common.Services
             {
                 return null;
             }
+        }
+
+        private static List<T> MapList<T>(IEnumerable<T> enumerable)
+        {
+            if (enumerable == null)
+                return new List<T>(0);
+
+            return new List<T>(enumerable);
+        }
+
+        private static List<T> MapList<T, U>(IEnumerable<U> enumerable, Func<U, T> projection)
+        {
+            if (enumerable == null)
+                return new List<T>(0);
+
+            return new List<T>(enumerable.Select(projection));
         }
     }
 }
