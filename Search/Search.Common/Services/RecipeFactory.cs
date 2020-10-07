@@ -1,9 +1,8 @@
 ﻿using Search.Common.Models;
+using Search.Common.Models.Dto;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
@@ -14,7 +13,7 @@ namespace Search.Common.Services
     {
         public static RecipeDocument CreateFrom(Uri uri)
         {
-            var data = RecipeScraper.GetRecipeData(uri);
+            RecipeDto data = RecipeScraper.GetRecipeData(uri);
 
             return new RecipeDocument
             {
@@ -35,11 +34,11 @@ namespace Search.Common.Services
         private static Guid GenerateGuidFromUrl(Uri uri)
         {
             // Denna behöver normaliseras, bookmarks, query-parametrar osv behöver tas bort.
-            var url = uri.GetLeftPart(UriPartial.Path).TrimEnd('/');
+            string url = uri.GetLeftPart(UriPartial.Path).TrimEnd('/');
 
-            var bytes = Encoding.UTF8.GetBytes(url);
-            var hasher = MD5.Create();
-            var hash = hasher.ComputeHash(bytes);
+            byte[] bytes = Encoding.UTF8.GetBytes(url);
+            MD5 hasher = MD5.Create();
+            byte[] hash = hasher.ComputeHash(bytes);
 
             return new Guid(hash);
         }

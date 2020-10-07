@@ -20,7 +20,7 @@ namespace Search.Client
 
         static object Search(SearchOptions options)
         {
-            var client = SearchClientFactory.CreateClient(options);
+            RecipeClient client = SearchClientFactory.CreateClient(options);
 
             // Denna övning använder ElasticSearch
             // https://www.elastic.co/
@@ -51,7 +51,7 @@ namespace Search.Client
                 return 1;
             }
 
-            var client = SearchClientFactory.CreateClient(options);
+            RecipeClient client = SearchClientFactory.CreateClient(options);
 
             var response = client.Index(recipe);
 
@@ -72,9 +72,9 @@ namespace Search.Client
 
         static string FormatApiCall(IApiCallDetails details)
         {
-            var status = details.HttpStatusCode;
-            var wasSuccess = details.Success;
-            var path = details.Uri.AbsolutePath;
+            int? status = details.HttpStatusCode;
+            bool wasSuccess = details.Success;
+            string path = details.Uri.AbsolutePath;
 
             return $"Response for '{path}', success: {wasSuccess}, status: {status}";
         }
