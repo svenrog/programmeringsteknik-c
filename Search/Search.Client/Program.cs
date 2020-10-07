@@ -31,8 +31,8 @@ namespace Search.Client
             // 1. Hitta 20 recept som innehåller ordet "fisk".
             // 2. Sortera sökträffarna efter rating.
             // 3. Räkna alla recept som är upplagda av Per Morberg.
-            // 4. Hitta recept som har en tillagningstid under 10 minuter.
-            // 5. Hitta 30 recept som tillhör kategorin Bönor
+            // 4. Hitta 30 recept som tillhör kategorin Bönor.
+            // 5. Räkna alla recept som har en tillagningstid på under 10 minuter.
 
             return 0;
         }
