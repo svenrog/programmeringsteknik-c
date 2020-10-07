@@ -19,6 +19,7 @@ namespace Search.Common.Services
             return new RecipeDocument
             {
                 Id = GenerateGuidFromUrl(uri),
+                Url = uri,
                 Name = data.Name,
                 Author = data.Author?.Name,
                 Description = data.Description,
