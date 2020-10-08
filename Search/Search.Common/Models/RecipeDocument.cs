@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Search.Common.Models
 {
+    //INTRESSANT ATT VETA
     public class RecipeDocument
     {
         public Guid Id { get; set; }
