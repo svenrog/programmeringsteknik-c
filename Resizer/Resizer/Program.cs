@@ -5,6 +5,8 @@ using System.IO;
 
 namespace Resizer
 {
+
+    // Funkar endast med NugGet CommandLine Parser
     class Options
     {
         [Option('i', "input", Required = true, HelpText = "Path to input file.")]
@@ -12,6 +14,9 @@ namespace Resizer
 
         [Option('w', "width", Required = false, HelpText = "Width of output image.")]
         public uint? Width { get; set; }
+
+        [Option('h', "height", Required = false, HelpText = "Height of output image.")]
+        public uint? Height { get; set; }
     }
 
     class Program
@@ -34,7 +39,7 @@ namespace Resizer
             // https://github.com/commandlineparser/commandline#quick-start-examples
 
 
-            // 1. Skala om en bild beroende på angiven breddparameter, tex. 512px
+            // 1. Skala om en bild beroende på angiven breddparameter, tex. 512px - I Debuggen
             // 2. Lägg till en höjdparameter och skala om beroende på dessa.
             // 3. Lägg till ett skärpefilter om bildens storlek minskas.
             // 4. Lägg till parametrar för färgmättnad, ljusstyrka och kontrast.
@@ -50,15 +55,24 @@ namespace Resizer
             {
                 var outputFileName = GetOutputFileName(options.Input);
                 //Test
-                using (var outStream = File.OpenWrite(outputFileName)) // utgående fil
+                using (var outStream = new FileStream(outputFileName, FileMode.Create, FileAccess.Write)) // Skriver inte över filen File.OpenWrite(outputFileName)) // utgående fil
                 {
+
+                    //var hints = new ResampleHints
+                    //{
+                    //    SharpenWhen = SharpenWhen.Downscaling,
+                    //    SharpenPercent = 0
+                    //};
 
                     using (var job = new ImageJob())
                     {
                         job.Decode(stream, false)
                         #region // Här kan man ändra bilden innan den skrivs ut
-                            .Distort(812, 512)
-                            
+                            //.ContrastSrgb(50)
+                            .SaturationSrgb(-50)
+                            //.ConstrainWithin(options.Width, options.Height, hints)
+                            //.Distort(812, 512)
+
                         #endregion
                             .EncodeToStream(outStream, false, new MozJpegEncoder(90))
                             .Finish()
