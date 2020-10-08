@@ -9,6 +9,7 @@
         public string[] RecipeIngredient { get; set; }
         public RecipeInstructionDto[] RecipeInstructions { get; set; }
         public AggregateRatingDto AggregateRating { get; set; }
+        public CategoryDto[] Categories { get; set; }
         public string TotalTime { get; set; }
     }
 }

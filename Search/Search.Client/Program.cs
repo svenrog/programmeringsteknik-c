@@ -33,7 +33,12 @@ namespace Search.Client
             // 3. Räkna alla recept som är upplagda av Per Morberg.
             // 4. Hitta 30 recept som tillhör kategorin Bönor.
             // 5. Räkna alla recept som har en tillagningstid på under 10 minuter (tips: TimeSpan lagras som ticks i index).
-
+            var result = client.Search(s => s
+                                    .Query(q => q
+                                    .Match(m => m
+                                    .Field(f => f
+                                    .Author)
+                                    .Query("Per Moberg"))));
             return 0;
         }
 
