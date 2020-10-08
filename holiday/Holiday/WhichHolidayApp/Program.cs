@@ -5,6 +5,33 @@ using System.Linq;
 
 namespace WhichHolidayApp
 {
+    enum Tradition
+    {
+        Start,//0
+        Must,//1
+        DonaldDuck,//2
+        Christmas,//3
+        Easter,//4
+        Midsummer,//5 
+        Fika,//6
+        Cream,//7
+        WaffleDay,//8
+        ShrovelTuesday,//9
+        CinnamonbunDay,//10
+        Jam,//11
+        USimport,//12,
+        Dunno,//13
+        Valentines, //14
+        Halloween,//15
+        Hangover,//16
+        Ivanhoe,//17
+        NewYearsDay,//18
+        FirstMay,//19
+        DunnoCelebration,//20
+        Ascension,//21
+        NationalDay//22
+    };
+
     static class Menu
     {
         //Just skip this code for now
@@ -99,22 +126,39 @@ namespace WhichHolidayApp
             //Little nice declaration but cant get into to a collection
             //(string, int, int) isHerring = ("Do we eat herring?", 1, 2);
 
+            Console.WriteLine("Startvärde:" +((byte)Tradition.Start));
+
             //An array is to difficult to initialize
-            var queryList = new List<ValueTuple<string, int, int>>
-            {      //                                                       y/n
-                   new ValueTuple<string, int, int> ("Do we eat herring?", 1, 2),                       //0
-                   new ValueTuple<string, int, int> ("Do we drink must??", 3, 5),                       //1
-                   new ValueTuple<string, int, int> ("Are we hangover?", 0, 4),                         //2
-                   new ValueTuple<string, int, int> ("Are we watching television at 15.00 AM?", 6, 7),  //3
-                   new ValueTuple<string, int, int> ("Does fika play a big role?", 8, 0),               //4
-                   new ValueTuple<string, int, int> ("\nMidsommar(Midsomer)", 0, 0),                    //5
-                   new ValueTuple<string, int, int> ("\nJul(Christmas)", 0, 0),                         //6
-                   new ValueTuple<string, int, int> ("\nPåsk(Easter)", 0, 0),                           //7
-                   new ValueTuple<string, int, int> ("Whipped cream?", 0, 9),                           //8
-                   new ValueTuple<string, int, int> ("\nKanebullensdag(Cinnamonbun day)", 0, 0),        //9
+            var queryList = new List<ValueTuple<string, byte, byte>>
+            {                              //yes/no
+                    ("Do we eat herring?", (byte)Tradition.Must, (byte)Tradition.Fika), //0
+                    ("Do we drink must??", (byte)Tradition.DonaldDuck, (byte)Tradition.Midsummer),//1
+                    ("Are we watching television at 15.00 AM?", (byte)Tradition.Christmas, (byte)Tradition.Easter),//2
+                    ("\nJul(Christmas)", 0, 0),//3
+                    ("\nPåsk(Easter)", 0, 0),//4
+                    ("\nMidsommar(Midsummer)", 0, 0),//5
+                    ("Does fika play a big role?", (byte)Tradition.Cream, (byte)Tradition.USimport),//6
+                    ("Whipped cream?", (byte)Tradition.Jam, (byte)Tradition.CinnamonbunDay),//7
+                    ("Jam?", (byte)Tradition.WaffleDay, (byte)Tradition.ShrovelTuesday),//8
+                    ("\nVåffeldagen(Waffle day)", 0, 0),//9
+                    ("\nFettisdagen(Shrove Tuesday)", 0, 0), //10
+                    ("\nKanebullensdag(Cinnamonbun day)", 0, 0),//11
+                    ("Imported by merchants from Usa?", (byte)Tradition.Valentines, (byte)Tradition.Halloween), //12
+                    ("\nAlla hjärtansdag(Valentines day)", 0, 0),//13
+                    ("\nHalloween", 0, 0),//14
+                    ("Are we hangover?", (byte)Tradition.Ivanhoe, (byte)Tradition.Dunno),//15
+                    ("Do we watch Ivanhoe?", (byte)Tradition.NewYearsDay, (byte)Tradition.FirstMay),//16
+                    ("\nNyårsdagen(New years day)", 0, 0),//17
+                    ("\nFörsta Maj(First of may)", 0, 0),//18
+                    ("Do people know the cause for the celebrating?", (byte)Tradition.Ascension, (byte)Tradition.NationalDay),//19
+                    ("\nKristi himmelsfärd(Ascension)", 0, 0),//20
+                    ("\nNationaldagen(National day)", 0, 0),//21
+
+
             };
 
-            Console.WriteLine("Ge the Swedish holiday by answering theese questions? (y/n)");
+
+            Console.WriteLine("Get the Swedish holiday by answering theese questions? (y/n)");
             Console.WriteLine("-----------------------------------------------------------");
 
             int index = 0;
@@ -124,7 +168,12 @@ namespace WhichHolidayApp
                 var yesRoute = queryList[index].Item2;
                 var noRoute = queryList[index].Item3;
 
-                Console.WriteLine(question);
+                
+
+                if (question == queryList[(byte)Tradition.USimport + 1].Item1)
+                    Console.WriteLine("Alla hjärtansdag(y)/Hallowen(n)");
+                else Console.WriteLine(question);
+
                 string input = Console.ReadLine().ToLower();
 
                 if (input[0] == 'y')
