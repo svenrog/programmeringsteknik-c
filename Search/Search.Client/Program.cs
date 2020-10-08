@@ -32,7 +32,7 @@ namespace Search.Client
             // 2. Sortera sökträffarna efter rating.
             // 3. Räkna alla recept som är upplagda av Per Morberg.
             // 4. Hitta 30 recept som tillhör kategorin Bönor.
-            // 5. Räkna alla recept som har en tillagningstid på under 10 minuter.
+            // 5. Räkna alla recept som har en tillagningstid på under 10 minuter (tips: TimeSpan lagras som ticks i index).
 
             return 0;
         }
