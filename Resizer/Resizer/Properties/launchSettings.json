@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Resizer": {
+      "commandName": "Project",
+      "commandLineArgs": "-i\".\\Images\\image1.jpg\""
+    }
+  }
+}

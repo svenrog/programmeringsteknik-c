@@ -1,5 +1,7 @@
 ﻿using CommandLine;
 using Imageflow.Fluent;
+using System;
+using System.IO;
 
 namespace Resizer
 {
@@ -31,19 +33,51 @@ namespace Resizer
             // Options-objektet behöver skapas från args
             // https://github.com/commandlineparser/commandline#quick-start-examples
 
-            
-            // 1. Skala om en bild beroende på angiven breddparameter
+
+            // 1. Skala om en bild beroende på angiven breddparameter, tex. 512px
             // 2. Lägg till en höjdparameter och skala om beroende på dessa.
             // 3. Lägg till ett skärpefilter om bildens storlek minskas.
             // 4. Lägg till parametrar för färgmättnad, ljusstyrka och kontrast.
+
+            Parser.Default.ParseArguments<Options>(args) //Utveckla vidare, läs in directory i args. Directory.RunFiles (?)
+                            .WithParsed<Options>(Run);
         }
 
         static void Run(Options options)
         {
-            using (var job = new ImageJob())
+
+            using (var stream = File.OpenRead(options.Input)) //ingående fil
             {
-                
+                var outputFileName = GetOutputFileName(options.Input);
+
+                using (var outStream = File.OpenWrite(outputFileName)) // utgående fil
+                {
+
+                    using (var job = new ImageJob())
+                    {
+                        job.Decode(stream, false)
+                        #region // Här kan man ändra bilden innan den skrivs ut
+                            .Distort(812, 512)
+
+                        #endregion
+                            .EncodeToStream(outStream, false, new MozJpegEncoder(90))
+                            .Finish()
+                            .InProcessAsync()
+                            .Wait();
+                    }
+                }
             }
+        }
+
+        static string GetOutputFileName(string path)
+        {
+            string directory = Path.GetDirectoryName(path);
+            string fileName = Path.GetFileNameWithoutExtension(path); 
+            string extenstion = Path.GetExtension(path);  // extension = tex. .Json .Img
+
+            string newFileName = $"{directory}{fileName}-resized{extenstion}";
+
+            return Path.Combine(directory, newFileName);
         }
     }
 }
