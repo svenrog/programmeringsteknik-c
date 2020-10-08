@@ -1,5 +1,7 @@
 ﻿using Search.Common.Models;
+using Search.Common.Models.Dto;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,30 +13,32 @@ namespace Search.Common.Services
     {
         public static RecipeDocument CreateFrom(Uri uri)
         {
-            var data = RecipeScraper.GetRecipeData(uri);
+            RecipeDto data = RecipeScraper.GetRecipeData(uri);
 
             return new RecipeDocument
             {
                 Id = GenerateGuidFromUrl(uri),
+                Url = uri,
                 Name = data.Name,
                 Author = data.Author?.Name,
                 Description = data.Description,
                 Image = data.Image,
                 Rating = data.AggregateRating?.RatingValue ?? 0,
-                Ingredients = string.Join("\n", data.RecipeIngredient),
-                Steps = string.Join("\n", data.RecipeInstructions.Select(x => x.Text)),
                 TimeToCook = GetTime(data.TotalTime),
+                Ingredients = MapList(data.RecipeIngredient),
+                Steps = MapList(data.RecipeInstructions, x => x.Text),
+                Categories = MapList(data.Categories, x => x.Name)
             };
         }
 
         private static Guid GenerateGuidFromUrl(Uri uri)
         {
             // Denna behöver normaliseras, bookmarks, query-parametrar osv behöver tas bort.
-            var url = uri.GetLeftPart(UriPartial.Path).TrimEnd('/');
+            string url = uri.GetLeftPart(UriPartial.Path).TrimEnd('/');
 
-            var bytes = Encoding.UTF8.GetBytes(url);
-            var hasher = MD5.Create();
-            var hash = hasher.ComputeHash(bytes);
+            byte[] bytes = Encoding.UTF8.GetBytes(url);
+            MD5 hasher = MD5.Create();
+            byte[] hash = hasher.ComputeHash(bytes);
 
             return new Guid(hash);
         }
@@ -49,6 +53,22 @@ namespace Search.Common.Services
             {
                 return null;
             }
+        }
+
+        private static List<T> MapList<T>(IEnumerable<T> enumerable)
+        {
+            if (enumerable == null)
+                return new List<T>(0);
+
+            return new List<T>(enumerable);
+        }
+
+        private static List<T> MapList<T, U>(IEnumerable<U> enumerable, Func<U, T> projection)
+        {
+            if (enumerable == null)
+                return new List<T>(0);
+
+            return new List<T>(enumerable.Select(projection));
         }
     }
 }
