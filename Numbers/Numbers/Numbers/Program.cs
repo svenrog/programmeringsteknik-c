@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+/**
+* @author Edgar Runnman
+* @edgar.runnman@gmail.com
+* @date - 2020-09-01 
+*/
 namespace Numbers
 {
     class Program

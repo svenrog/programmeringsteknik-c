@@ -4,6 +4,11 @@
             // Man behöver använda % (modulo)
 
 using System;
+/**
+* @author Edgar Runnman
+* @edgar.runnman@gmail.com
+* @date - 2020-09-01 
+*/
 
 namespace ChessApp
 {
