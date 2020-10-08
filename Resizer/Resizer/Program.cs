@@ -49,7 +49,7 @@ namespace Resizer
             using (var stream = File.OpenRead(options.Input)) //ingående fil
             {
                 var outputFileName = GetOutputFileName(options.Input);
-
+                //Test
                 using (var outStream = File.OpenWrite(outputFileName)) // utgående fil
                 {
 
@@ -58,7 +58,7 @@ namespace Resizer
                         job.Decode(stream, false)
                         #region // Här kan man ändra bilden innan den skrivs ut
                             .Distort(812, 512)
-
+                            
                         #endregion
                             .EncodeToStream(outStream, false, new MozJpegEncoder(90))
                             .Finish()
