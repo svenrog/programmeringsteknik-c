@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ChessApp
 {
@@ -8,23 +9,23 @@ namespace ChessApp
         {
 <<<<<<< HEAD
             //░ och ▓)
-            int j = 0;
-            for (var i = 0; i < 64; i++)
+            int currentRow = 0;
+            for (var tilesNumber = 0; tilesNumber < 64; tilesNumber++)
             {
-                if(i % 8 == 0)
+                if(tilesNumber % 8 == 0)
                 {
                     Console.WriteLine("");
-                    j++;
+                    currentRow++;
                 }
-                if (i % 2 == 0)
+                if (tilesNumber % 2 == 0)
                 {
-                    if(j % 2 == 1)
+                    if(currentRow % 2 == 1)
                     {
                         Console.Write("▓▓");
                         continue;
                     }
                     Console.Write("░░");
-                } else if(i % 2 == 1 && j % 2 == 0)
+                } else if(tilesNumber % 2 == 1 && currentRow % 2 == 0)
                 {
                     Console.Write("▓▓");
                 } else
@@ -32,6 +33,34 @@ namespace ChessApp
                     Console.Write("░░");
                 }
             }
+
+            Console.WriteLine();
+
+            //ny version, förenklad
+
+            for (var height = 0; height < 8; height++)
+            {
+                Console.WriteLine();
+                for (var width = 0; width < 8; width++)
+                {
+                    if (height % 2 == 0 && width % 2 == 0)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.Write("  ");
+                        continue;
+                    }
+
+                    if (width % 2 == 1 && height % 2 == 1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.Write("  ");
+                        continue;
+                    }
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.Write("  ");
+                }
+            }
+
             Console.ReadLine();
 =======
             // Rita ett schackbräde med hjälp av dessa två tecken ░ ▓.
