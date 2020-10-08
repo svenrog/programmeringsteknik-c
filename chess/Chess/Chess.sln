@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
+<<<<<<< HEAD
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp", "ChessApp\ChessApp.csproj", "{4810FFE9-A860-4C7E-BAFB-8B37C856BD81}"
+=======
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp", "ChessApp\ChessApp.csproj", "{695D4BB9-0D3F-4177-96B8-00CAA1D56BC6}"
+>>>>>>> 4c0a63f21c15e580e41bad7e0d47b9e369ef1841
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +17,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<< HEAD
 		{4810FFE9-A860-4C7E-BAFB-8B37C856BD81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4810FFE9-A860-4C7E-BAFB-8B37C856BD81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4810FFE9-A860-4C7E-BAFB-8B37C856BD81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4810FFE9-A860-4C7E-BAFB-8B37C856BD81}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{695D4BB9-0D3F-4177-96B8-00CAA1D56BC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{695D4BB9-0D3F-4177-96B8-00CAA1D56BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{695D4BB9-0D3F-4177-96B8-00CAA1D56BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{695D4BB9-0D3F-4177-96B8-00CAA1D56BC6}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 4c0a63f21c15e580e41bad7e0d47b9e369ef1841
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+<<<<<<< HEAD
 		SolutionGuid = {B05E0F04-AFF5-4699-B7F1-9EE40823BDC6}
+=======
+		SolutionGuid = {ACCCCF93-F473-49FD-B5A8-5EA0BFB35EDB}
+>>>>>>> 4c0a63f21c15e580e41bad7e0d47b9e369ef1841
 	EndGlobalSection
 EndGlobal

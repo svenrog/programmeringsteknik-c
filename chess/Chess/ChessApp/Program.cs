@@ -6,6 +6,7 @@ namespace ChessApp
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             //░ och ▓)
             int j = 0;
             for (var i = 0; i < 64; i++)
@@ -32,6 +33,11 @@ namespace ChessApp
                 }
             }
             Console.ReadLine();
+=======
+            // Rita ett schackbräde med hjälp av dessa två tecken ░ ▓.
+            // Använd gärna metoder för att lösa problemet.
+            // Man behöver använda % (modulo)
+>>>>>>> 4c0a63f21c15e580e41bad7e0d47b9e369ef1841
         }
     }
 }
