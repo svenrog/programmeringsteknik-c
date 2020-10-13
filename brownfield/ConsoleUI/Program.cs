@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using TimeSheet.Common;
+using TimeSheet.Common.Data;
 using TimeSheet.Common.Models;
 
 // Please note - THIS IS A BAD APPLICATION - DO NOT REPLICATE WHAT IT DOES
@@ -12,21 +14,43 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            string workDone;
-            int i;
-            int hoursDone; 
-            int timeTotal;
+            List<TimeSheetEntryModel> timeSheetEntries = GetTimeSheetEntries();
+            List<CustomerModel> customers = CustomerLibrary.GetCustomers();
 
-            List<TimeSheetEntryModel> timeSheetEntries = new List<TimeSheetEntryModel>();
+            foreach (var customer in customers)
+            {
+                var customerTime = TimeSheetProcessor.CalculateTimeForCustomer(timeSheetEntries, customer.Name);
+                SimulateSendingMail(customer, customerTime);
+            }
 
+            List<PaymentModel> payments = PaymentLibrary.GetPayments();
+
+            var timeWorked = TimeSheetProcessor.CalculateTimeWorked(timeSheetEntries);
+            foreach (var payment in payments)
+            {
+                if (timeWorked > payment.HourLimit)
+                {
+                    SimulatePayment(payment, timeWorked);
+                    break;
+                }
+            }
+
+            Console.WriteLine();
+            Console.Write("Press any key to exit application...");
+            Console.ReadKey();
+        }
+
+        static List<TimeSheetEntryModel> GetTimeSheetEntries()
+        {
             bool continueEntering;
+            List<TimeSheetEntryModel> timeSheetEntries = new List<TimeSheetEntryModel>();
             do
             {
                 Console.Write("Enter what you did: ");
-                workDone = Console.ReadLine();
+                string workDone = Console.ReadLine();
 
                 Console.Write("Enter how many hours you did it for: ");
-                hoursDone = int.Parse(Console.ReadLine());
+                int hoursDone = int.Parse(Console.ReadLine());
 
                 TimeSheetEntryModel entry = new TimeSheetEntryModel
                 {
@@ -37,43 +61,38 @@ namespace ConsoleUI
 
                 Console.Write("Do you want to enter more time (yes/no): ");
                 continueEntering = Console.ReadLine().Equals("yes", StringComparison.OrdinalIgnoreCase);
-            } 
+            }
             while (continueEntering == true);
 
-            timeTotal = 0;
-            for (i = 0; i < timeSheetEntries.Count; i++)
+            return timeSheetEntries;
+        }
+
+        static void SimulatePayment(PaymentModel paymentModel, int hours)
+        {
+            decimal hourlyRate = 50;
+            decimal hourlyRateExtra = 75;
+            decimal amountToPay = 0;
+
+            if (hours > 40)
             {
-                if (timeSheetEntries[i].WorkDone.Contains("Acme"))
-                {
-                    timeTotal += i;
-                }
-            }
-            Console.WriteLine("Simulating Sending email to Acme");
-            Console.WriteLine("Your bill is $" + timeTotal * 150 + " for the hours worked.");
-            for (i = 0; i < timeSheetEntries.Count; i++)
-            {
-                if (timeSheetEntries[i].WorkDone.Contains("ABC"))
-                {
-                    timeTotal += i;
-                }
-            }
-            Console.WriteLine("Simulating Sending email to ABC");
-            Console.WriteLine("Your bill is $" + timeTotal * 125 + " for the hours worked.");
-            for (i = 0; i < timeSheetEntries.Count; i++)
-            {
-                timeTotal += timeSheetEntries[i].HoursWorked;
-            }
-            if (timeTotal > 40)
-            {
-                Console.WriteLine("You will get paid $" + timeTotal * 15 + " for your work.");
+                amountToPay = hourlyRate * 40;
+                hours =- 40;
+                amountToPay += hours * hourlyRateExtra;
             }
             else
             {
-                Console.WriteLine("You will get paid $" + timeTotal * 10 + " for your time.");
+                amountToPay = hours * hourlyRate;
             }
-            Console.WriteLine();
-            Console.Write("Press any key to exit application...");
-            Console.ReadKey();
+
+            Console.WriteLine($"You will get paid ${amountToPay} for your {paymentModel.Label}");
+        }
+
+        static void SimulateSendingMail(CustomerModel customer, int hours)
+        {
+            decimal amountToBill = hours * customer.HourlyRate;
+
+            Console.WriteLine($"Simulating Sending email to {customer.Name}");
+            Console.WriteLine($"Your bill is ${amountToBill} for the hours worked.");
         }
     }
 }
