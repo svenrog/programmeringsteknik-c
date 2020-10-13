@@ -2,7 +2,7 @@
   "profiles": {
     "Search.Client": {
       "commandName": "Project",
-      "commandLineArgs": "search -q \"fisk\""
+      "commandLineArgs": "search -q\" Per Moberg\""
     }
   }
 }

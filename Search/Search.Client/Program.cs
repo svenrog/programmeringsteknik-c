@@ -6,6 +6,7 @@ using Search.Common.Models;
 using Search.Common.Services;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using Error = CommandLine.Error;
 
 namespace Search.Client
@@ -29,10 +30,43 @@ namespace Search.Client
             // https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/writing-queries.html
 
             // 1. Hitta 20 recept som innehåller ordet "fisk".
+
+            // görs genom arg som inparameter search -q "fisk"
+
+
+            //var result = client.Search(s => s.QueryOnQueryString(options.Query)
+            // .Sort(order => order.Descending(descending => descending.Rating)).Sort(author).Take(20));
+
             // 2. Sortera sökträffarna efter rating.
+
             // 3. Räkna alla recept som är upplagda av Per Morberg.
+
+            //var result = client.Search(s => s.QueryOnQueryString(options.Query)(byAuthor => byAuthor.Field(author => author.Author))
+
+            //var result = client.Count(search => search.Query(
+            //                query => query.Match(
+            //                    match => match.Field(field => field.Author)
+            //                    .Query(options.Query))));
+
+            //var result = client.Count(search => search.QueryOnQueryString("author:\"Per Moberg\""));
+
             // 4. Hitta 30 recept som tillhör kategorin Bönor.
+
+            //var result = client.Search(search => search.QueryOnQueryString("Bönor").);
+
+            // var result = client.Search(search => search.QueryOnQueryString("categories:\"Bönor\""));
+
+            var resultByCookTime = client.Search()
+
             // 5. Räkna alla recept som har en tillagningstid på under 10 minuter (tips: TimeSpan lagras som ticks i index).
+
+                for (int i = 0; i < 10; i++)
+            {
+
+            }
+            var result = client.Count(search => search.QueryOnQueryString("timeToCook:\"Bönor\""));
+
+            // .MatchAll());
 
             return 0;
         }

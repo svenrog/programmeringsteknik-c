@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Resizer": {
+      "commandName": "Project",
+      "commandLineArgs": "-i C:\\plushogskolan\\programmeringsteknik-c\\Resizer\\Resizer\\Images\\image1.jpg -w 512 -h 400"
+    }
+  }
+}
