@@ -6,6 +6,7 @@ namespace WhichHolidayApp
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             string question = "Äter man sill?";
 
             Console.WriteLine("Vilken svensk högtid?");
@@ -128,6 +129,44 @@ namespace WhichHolidayApp
             }
 
             return question;
+=======
+            // Implementera följande flödesschema med metoder och användarinmatning
+            // https://pbs.twimg.com/media/EQup9bwXUAEK5a_?format=jpg&name=large
+
+            int value;
+
+            while (GetInput(out value) == false);
+
+            Console.WriteLine($"Finally we got a value {value}");
+        }
+
+        static bool GetInput(out int inputValue)
+        {
+            Console.Write("Enter a number: ");
+            try
+            {
+                string rawInput = Console.ReadLine();
+                inputValue = int.Parse(rawInput);
+
+                EnsureValidValue(inputValue);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                inputValue = -1;
+
+                return false;
+            }
+        }
+
+        static void EnsureValidValue(int value)
+        {
+            if (value > 1_000_000)
+                throw new ArgumentOutOfRangeException("Value cannot be above 1 000 000");
+>>>>>>> 4c0a63f21c15e580e41bad7e0d47b9e369ef1841
         }
     }
 }

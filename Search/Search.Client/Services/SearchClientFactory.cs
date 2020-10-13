@@ -14,13 +14,7 @@ namespace Search.Client.Services
         private static ElasticClient CreateElasticClient<T>(ConnectionOptions options)
             where T : class
         {
-            var indexUri = new Uri(options.Host);
-            var settings = new ConnectionSettings(indexUri)
-            .DefaultIndex(options.Index)
-            .DefaultMappingFor<T>(m => m
-                .IndexName(options.Index)
-            );
-
+            var settings = SettingsFactory.CreateFrom<T>(options);
             return new ElasticClient(settings);
         }
     }
