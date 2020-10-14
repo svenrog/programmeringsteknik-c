@@ -9,10 +9,10 @@ namespace HansJohnnysButikApp
     public class Movies : Media
     {
         const string _separator = ";";
-        public Movies(string csv)
+        public Movies(string fromMoviesCsv)
         {
             Random randomizer = new Random();
-            string[] columns = csv.Split(_separator);
+            string[] columns = fromMoviesCsv.Split(_separator);
 
             Name = columns[1];
             Producer = columns[2];

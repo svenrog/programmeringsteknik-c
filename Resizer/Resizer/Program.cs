@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using Imageflow.Fluent;
+using System.IO;
 
 namespace Resizer
 {
@@ -10,6 +11,9 @@ namespace Resizer
 
         [Option('w', "width", Required = false, HelpText = "Width of output image.")]
         public uint? Width { get; set; }
+
+        [Option('h', "Height", Required = false, HelpText = "Height of output image.")]
+        public uint? Height { get; set; }
     }
 
     class Program
@@ -31,19 +35,59 @@ namespace Resizer
             // Options-objektet behöver skapas från args
             // https://github.com/commandlineparser/commandline#quick-start-examples
 
-            
+
             // 1. Skala om en bild beroende på angiven breddparameter
             // 2. Lägg till en höjdparameter och skala om beroende på dessa.
             // 3. Lägg till ett skärpefilter om bildens storlek minskas.
             // 4. Lägg till parametrar för färgmättnad, ljusstyrka och kontrast.
+
+            Parser.Default.ParseArguments<Options>(args)
+                          .WithParsed<Options>(Run);
         }
 
         static void Run(Options options)
         {
-            using (var job = new ImageJob())
+            var directory = Path.GetDirectoryName(options.Input);
+            var files = Directory.GetFiles(directory, "*.jpg");
+
+            //Directory.EnumerateFiles(); går igenom alla filer i underkataloger.
+
+            foreach (var filePath in files)
             {
-                
+                using (var stream = File.OpenRead(filePath))
+                {
+                    var outputFileName = GetOutPutFileName(filePath);
+
+                    using (var outStream = new FileStream(outputFileName, FileMode.Create, FileAccess.Write))
+                    {
+                        var hints = new ResampleHints
+                        {
+                            SharpenWhen = SharpenWhen.Downscaling,
+                            SharpenPercent = 10,
+                        };
+                        using (var job = new ImageJob())
+                        {
+                            job.Decode(stream, false)
+                               .ConstrainWithin(options.Width, options.Height, hints)
+                               .SaturationSrgb(0)
+                               .EncodeToStream(outStream, false, new MozJpegEncoder(90))
+                               .Finish()
+                               .InProcessAsync()
+                               .Wait();
+                        }
+                    }
+                }
             }
+        }
+        static string GetOutPutFileName(string path)
+        {
+            string directory = Path.GetDirectoryName(path);
+            string filename = Path.GetFileNameWithoutExtension(path);
+            string extension = Path.GetExtension(path);
+
+            string newFileName = $"{filename}-resized{extension}";
+            
+            return Path.Combine(directory, newFileName);
         }
     }
 }

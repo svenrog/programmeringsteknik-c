@@ -5,36 +5,36 @@ namespace HansJohnnysButikApp
 {
     public class MediaReader
     {
-        public string myMovieString;
-        public string myMusicString;
-        public string mySongString;
+        public string _movie;
+        public string _music;
+        public string _song;
         //public string myDummyString = ReadFromMoviesCsv("Dummy.txt");
         public MediaReader()
         {
-            myMovieString = ReadFromMoviesCsv("Movies.csv");
-            myMusicString = ReadFromMusicCsv("Albums.csv");
-            mySongString = ReadFromSongsCsv("Songs.csv");
+            _movie = ReadFromMoviesCsv("Movies.csv");
+            _music = ReadFromMusicCsv("Albums.csv");
+            _song = ReadFromSongsCsv("Songs.csv");
         }
-        public static string ReadFromMoviesCsv(string csvFileName)
+        public static string ReadFromMoviesCsv(string csvFileReadMovies)
         {
             bool isNotNull = true;
-            string myCsvDataSet = "";
+            string myMovieCsvDataSet = "";
             try
             {
-                using (FileStream fileStream = File.Open(csvFileName, FileMode.Open))
+                using (FileStream fileStream = File.Open(csvFileReadMovies, FileMode.Open))
                 {
                     using (StreamReader fileStreamReader = new StreamReader(fileStream))
 
                         while (isNotNull)
                         {
-                            myCsvDataSet = fileStreamReader.ReadLine();
-                            if (myCsvDataSet == null)
+                            myMovieCsvDataSet = fileStreamReader.ReadLine();
+                            if (myMovieCsvDataSet == null)
                             {
                                 isNotNull = false;
                             }
                             else
                             {
-                                Shop.MovieList.Add(new Movies(myCsvDataSet));
+                                Shop.MovieList.Add(new Movies(myMovieCsvDataSet));
                             }
                         }
                 }
@@ -43,29 +43,29 @@ namespace HansJohnnysButikApp
             {
                 Console.WriteLine("File not found. Error!");
             }
-            return myCsvDataSet;
+            return myMovieCsvDataSet;
         }
-        public static string ReadFromMusicCsv(string csvFileName)
+        public static string ReadFromMusicCsv(string csvFileReadMusic)
         {
             bool isNotNull = true;
-            string myCsvDataSet = "";
+            string myMusicCsvDataSet = "";
 
             try
             {
-                using (FileStream fileStream = File.Open(csvFileName, FileMode.Open))
+                using (FileStream fileStream = File.Open(csvFileReadMusic, FileMode.Open))
                 {
                     using (StreamReader fileStreamReader = new StreamReader(fileStream))
 
                         while (isNotNull)
                         {
-                            myCsvDataSet = fileStreamReader.ReadLine();
-                            if (myCsvDataSet == null)
+                            myMusicCsvDataSet = fileStreamReader.ReadLine();
+                            if (myMusicCsvDataSet == null)
                             {
                                 isNotNull = false;
                             }
                             else
                             {
-                                Shop.MusicList.Add(new Music(myCsvDataSet));
+                                Shop.AlbumList.Add(new Albums(myMusicCsvDataSet));
                             }
                         }
                 }
@@ -74,29 +74,29 @@ namespace HansJohnnysButikApp
             {
                 Console.WriteLine("File not found. Error!");
             }
-            return myCsvDataSet;
+            return myMusicCsvDataSet;
         }
-        public static string ReadFromSongsCsv(string csvFileName)
+        public static string ReadFromSongsCsv(string csvFileReadSongs)
         {
             bool isNotNull = true;
-            string myCsvDataSet = "";
+            string mySongCsvDataSet = "";
 
             try
             {
-                using (FileStream fileStream = File.Open(csvFileName, FileMode.Open))
+                using (FileStream fileStream = File.Open(csvFileReadSongs, FileMode.Open))
                 {
                     using (StreamReader fileStreamReader = new StreamReader(fileStream))
 
                         while (isNotNull)
                         {
-                            myCsvDataSet = fileStreamReader.ReadLine();
-                            if (myCsvDataSet == null)
+                            mySongCsvDataSet = fileStreamReader.ReadLine();
+                            if (mySongCsvDataSet == null)
                             {
                                 isNotNull = false;
                             }
                             else
                             {
-                                Shop.SongList.Add(new Songs(myCsvDataSet));
+                                Shop.SongList.Add(new Songs(mySongCsvDataSet));
                             }
                         }
                 }
@@ -105,7 +105,7 @@ namespace HansJohnnysButikApp
             {
                 Console.WriteLine("File not found. Error!");
             }
-            return myCsvDataSet;
+            return mySongCsvDataSet;
         }
     }
 }

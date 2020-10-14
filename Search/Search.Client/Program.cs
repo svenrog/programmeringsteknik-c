@@ -6,6 +6,7 @@ using Search.Common.Models;
 using Search.Common.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Error = CommandLine.Error;
 
 namespace Search.Client
@@ -33,6 +34,35 @@ namespace Search.Client
             // 3. Räkna alla recept som är upplagda av Per Morberg.
             // 4. Hitta 30 recept som tillhör kategorin Bönor.
             // 5. Räkna alla recept som har en tillagningstid på under 10 minuter (tips: TimeSpan lagras som ticks i index).
+
+            var result = client.Search(s => s.QueryOnQueryString(options.Query)
+                                             .Sort(o => o.Descending(a => a.Rating))
+                                             .Take(30));
+
+            // Här får vi ut en räknare på antal recept Per Moberg har gjort. Om man väljer search istället så 
+            // får man ut alla recept gjorda av Per Moberg.
+            var authorResult = client.Count(search => search.Query(
+                                                      query => query.Match(
+                                                          match => match.Field(field => field.Author)
+                                                                        .Query("Per Morberg"))));
+            authorResult = client.Count(search => search.QueryOnQueryString("author: \"Per Morberg\""));
+
+            var beanResult = client.Search(search => search.Query
+                                                (
+                                                    query => query.Match
+                                                    (
+                                                        match => match.Field(field => field.Categories)
+                                                                      .Query("Bönor"))
+                                                    )
+                                                    .Take(30)                                                            
+                                           );
+
+            var cookLessThanTenMinutes = client.Count(s => s.Query
+                                                       (q => q.Match
+                                                       (query => query(TimeSpan.TicksPerMinute)
+                                                       (
+                                                                   (field => field.TimeSpan
+                                                                                  .));
 
             return 0;
         }
