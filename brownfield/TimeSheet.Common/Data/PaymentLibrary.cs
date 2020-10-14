@@ -10,7 +10,7 @@ namespace TimeSheet.Common.Data
             return new List<PaymentModel>
             {
                 new PaymentModel { Label = "overtime", HourLimit = 40, HourlyRate = 75 },
-                new PaymentModel { Label = "time", HourLimit = 0, HourlyRate = 50}
+                new PaymentModel { Label = "time", HourLimit = 0, HourlyRate = 50 }
             };
         }
     }

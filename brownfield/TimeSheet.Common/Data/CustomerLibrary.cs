@@ -9,8 +9,8 @@ namespace TimeSheet.Common.Data
         {
             return new List<CustomerModel>
             {
-                new CustomerModel {Name = "Acme", HourlyRate = 150},
-                new CustomerModel {Name = "ABC", HourlyRate = 125}
+                new CustomerModel { Name = "Acme", HourlyRate = 150 },
+                new CustomerModel { Name = "ABC", HourlyRate = 125 }
             };
         }
     }

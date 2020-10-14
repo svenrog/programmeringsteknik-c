@@ -14,13 +14,13 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            List<TimeSheetEntryModel> timeSheetEntries = new List<TimeSheetEntryModel>();
+            List<TimeSheetEntryModel> timeSheetEntries = GetTimeSheetEntries();
             List<CustomerModel> customers = CustomerLibrary.GetCustomers();
 
             foreach (var customer in customers)
             {
                 var customerTime = TimeSheetProcessor.CalculateTimeForCustomer(timeSheetEntries, customer.Name);
-                SimulateSendingMail(customer, customerTime);                
+                SimulateSendingMail(customer, customerTime);
             }
 
             List<PaymentModel> payments = PaymentLibrary.GetPayments();
@@ -48,15 +48,15 @@ namespace ConsoleUI
             do
             {
                 Console.Write("Enter what you did: ");
-                string workPerformed = Console.ReadLine();
+                string workDone = Console.ReadLine();
 
                 Console.Write("How long did you do it for (in hours): ");
                 int hoursDone = int.Parse(Console.ReadLine());
 
                 TimeSheetEntryModel entry = new TimeSheetEntryModel
-                {
+                { 
                     HoursWorked = hoursDone,
-                    WorkDone = workPerformed
+                    WorkDone = workDone
                 };
                 timeSheetEntries.Add(entry);
 
@@ -70,9 +70,9 @@ namespace ConsoleUI
 
         static void SimulatePayment(PaymentModel paymentModel, int hours)
         {
-            decimal amountToPay = PaymentProcessor.CalculatePayment(paymentModel,hours);
+            decimal amountToPay = PaymentProcessor.CalculatePayment(paymentModel, hours);
 
-            Console.WriteLine($"You will get paid ${amountToPay}for your {paymentModel.Label}.");
+            Console.WriteLine($"You will get paid ${amountToPay} for your {paymentModel.Label}.");
         }
 
         static void SimulateSendingMail(CustomerModel customer, int hours)
@@ -80,7 +80,7 @@ namespace ConsoleUI
             decimal amountToBill = hours * customer.HourlyRate;
 
             Console.WriteLine($"Simulating Sending email to {customer.Name}");
-            Console.WriteLine($"Your bill is ${amountToBill}for the hours worked.");
+            Console.WriteLine($"Your bill is ${amountToBill} for the hours worked.");
         }
     }
 }
