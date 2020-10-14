@@ -6,32 +6,28 @@ namespace leapyearcalculator
     {
         static void Main(string[] args)
         {
-            while (true)
-            {
-                Console.WriteLine("Skriv in årtal");
-                int year1 = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Skriv in andra årtal");
-                int year2 = Convert.ToInt32(Console.ReadLine());
-                
-                if (year1 < year2)
-                {
-                    leapYearCounter(year1, year2);
-                }
-                else
-                {
-                    leapYearCounter(year2, year1);
-                }
-            }
-        }
-        public static void leapYearCounter(int item1, int item2)
-        {
+            // Räkna ut hur många skottår som passerat mellan två inmatade värden.
+            // DateTime.IsLeapYear(year) är en metod man kan använda.
+
+            int firstYear = int.Parse(args[0]);
+            int secondYear = int.Parse(args[1]);
+
+            int maxYear = Math.Max(firstYear, secondYear);
+            int minYear = Math.Min(firstYear, secondYear);
+
             int leapYearCount = 0;
-            for (int i = item1; i < item2; i++)
+
+            for (int year = minYear; year <= maxYear; year++)
             {
-                if (DateTime.IsLeapYear(i))
+                bool isLeapYear = DateTime.IsLeapYear(year);
+
+                if (isLeapYear)
+                {
                     leapYearCount++;
+                }
             }
-            Console.WriteLine($"Det är {leapYearCount} skåttår mellan år {item1} och år {item2}");
+
+            Console.WriteLine($"Encountered {leapYearCount} leap years from {minYear} to {maxYear}.");
         }
     }
 }
