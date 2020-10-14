@@ -1,0 +1,7 @@
+PDFer från PingPong
+Motsvarande sidor i boken kan ses i början av varje PDF.
+PDFerna innehåller ofta uttryck med både svenska och engelska i formen skiftlägeskänsligt (case sensitive)
+PDFer 17-20 är överkurs och kommer ej på tentamen
+Delar 13-16 innehåller information som inte kommer från boken.
+Inget med Windows Forms, XAML osv ingår i den här kursen.
+Vi ska kunna skriva program som läser från fil och program som löser ett givet problem.

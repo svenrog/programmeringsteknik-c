@@ -1,0 +1,103 @@
+diff a/holiday/Holiday/WhichHolidayApp/Program.cs b/holiday/Holiday/WhichHolidayApp/Program.cs	(rejected hunks)
+@@ -8,6 +8,101 @@
+         {
+             // Implementera följande flödesschema med metoder och användarinmatning
+             // https://pbs.twimg.com/media/EQup9bwXUAEK5a_?format=jpg&name=large
++
++            // Steg ett: Äter man sill?
++            Console.WriteLine("Äter man sill? (y/n)");
++            if (Convert.ToChar(Console.ReadLine()) == 'y')
++            {
++                //Steg två, om ja, gå till vänstra delen av flödet
++                Console.WriteLine("Dricker man must? (y/n)");
++
++                if (Convert.ToChar(Console.ReadLine()) == 'y')
++                {
++                    //Forstätter vänster; dags att se på TV?
++                    Console.WriteLine("Kollar man på TV klockan 15? (y/n)");
++
++                    if (Convert.ToChar(Console.ReadLine()) == 'y')
++                    {
++                        //Nu vet vi att det är jul! Presenter till alla!
++                        Console.WriteLine("Nu är det jul igen!");
++                    }
++                    else 
++                    {
++                        Console.WriteLine("Påsk? Vad gör man med det?");
++                    }
++                }
++                else //Dricker inte must
++                {
++                    Console.WriteLine("Midsommar! Vilket betyder att det antingen är alldeles för varmt eller så regnar det.");
++                }
++            }
++            else // man äter inte sill!
++            {
++                Console.WriteLine("Är fika viktigt? (y/n)");
++                if (Convert.ToChar(Console.ReadLine()) == 'y')
++                {
++                    Console.WriteLine("Är det vispgrädde dags? (y/n)");
++                    if (Convert.ToChar(Console.ReadLine()) == 'y')
++                    {
++                        Console.WriteLine("Har man sylt? (y/n)");
++                        if (Convert.ToChar(Console.ReadLine()) == 'y')
++                        {
++                            Console.WriteLine("Våfflor idag, waffle on.");
++                        }
++                        else
++                        {
++                            Console.WriteLine("Dags för semlor. Mm, mandelmassa...");
++                        }
++                    }
++                    else
++                    {
++                        Console.WriteLine("Kanelbullar är väl okej, antar jag.");
++                    }
++                }
++                else
++                {
++                    Console.WriteLine("Importerat från USA? (y/n)");
++                    if (Convert.ToChar(Console.ReadLine()) == 'y')
++                    {
++                        Console.WriteLine("Köper man rosor? (y/n)");
++                        if (Convert.ToChar(Console.ReadLine()) == 'y')
++                        {
++                            Console.WriteLine("Alla hjärtans dag, för inget är mer romantiskt än att företag tjänar pengar.");
++                        }
++                        else 
++                        {
++                            Console.WriteLine("Halloween, för Alla Helgons Dag är inte tillräckligt bra på att sälja godis.");
++                        }
++                    }
++                    else
++                    {
++                        Console.WriteLine("Bakfylla relevant? (y/n)");
++                        if (Convert.ToChar(Console.ReadLine()) == 'y')
++                        {
++                            Console.WriteLine("Kollar man på Ivanhoe? (y/n)");
++                            if (Convert.ToChar(Console.ReadLine()) == 'y')
++                            {
++                                Console.WriteLine("Vänta. Vad är Ivanhoe? Jag har aldrig sett Ivanhoe? Betyder det att jag inte haft nyårs någon gång?");
++                            }
++                            else
++                            {
++                                Console.WriteLine("Första Maj ska vara arbetarrörelsens internationella dag, men jag tror att de flesta bara ser det som öldagen.");
++                            }
++                        }
++                        Console.WriteLine("Vet folk orsaken till firandet? (y/n)");
++                        if (Convert.ToChar(Console.ReadLine()) == 'y')
++                        {
++                            Console.WriteLine("Kristi Himmelsfärd. För det var inte tillräckligt att dö en gång.");
++                        }
++                        else 
++                        {
++                            Console.WriteLine("Nationaldagen, då vi firar att en diktator besegrade en annan diktator. Kanske borde hitta något bättre?");
++                        }
++                    }
++
++                }
++            }
++            // Så if-satser i if-satser, jag orkar inte kommenterar allt, och jag har bara testat om Jul och Nationaldagen fungerar, resten... Eh.
+         }
+     }
+ }
