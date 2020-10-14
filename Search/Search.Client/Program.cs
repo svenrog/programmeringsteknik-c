@@ -34,6 +34,18 @@ namespace Search.Client
             // 4. Hitta 30 recept som tillhör kategorin Bönor.
             // 5. Räkna alla recept som har en tillagningstid på under 10 minuter (tips: TimeSpan lagras som ticks i index).
 
+            //var result = client.Search(s => s.QueryOnQueryString(options.Query)
+            //                                 .Sort(order => order.Descending(field => field.Rating))
+            //                                 .Take(20));
+
+            //fråga mot specifikt fält
+            var result = client.Count(search => search.Query(
+                                                    query => query.Match(
+                                                        match => match.Field(field => field.Author)
+                                                                      .Query("Per Morberg"))));
+
+            result = client.Count(search => search.QueryOnQueryString("author:\"Per Morberg\""));
+
             return 0;
         }
 

@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using Imageflow.Fluent;
+using System.IO;
 
 namespace Resizer
 {
@@ -31,18 +32,26 @@ namespace Resizer
             // Options-objektet behöver skapas från args
             // https://github.com/commandlineparser/commandline#quick-start-examples
 
-            
+
             // 1. Skala om en bild beroende på angiven breddparameter
             // 2. Lägg till en höjdparameter och skala om beroende på dessa.
             // 3. Lägg till ett skärpefilter om bildens storlek minskas.
             // 4. Lägg till parametrar för färgmättnad, ljusstyrka och kontrast.
+
+            Parser.Default.ParseArguments<Options>(args)
+                          .WithParsed<Options>(Run);
+        
         }
 
         static void Run(Options options)
         {
-            using (var job = new ImageJob())
+            using(var stream = File.OpenRead(options.Input))
             {
-                
+                //Bara tillgång till bild här
+                using (var job = new ImageJob())
+                {
+                    job.Decode(stream, false);
+                }
             }
         }
     }
