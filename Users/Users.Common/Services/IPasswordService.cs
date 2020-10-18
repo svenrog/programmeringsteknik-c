@@ -12,7 +12,7 @@ namespace Users.Common.Services
         /// <param name="numbers">Amount of numbers</param>
         /// <param name="specialChars">Amount of special characters</param>
         /// <returns>A resulting password as string</returns>
-        string GeneratePassword(int length, int capitalLetters = 1, int numbers = 1, int specialChars = 1);
+        string GeneratePassword(uint length, uint capitalLetters = 1, uint numbers = 1, uint specialChars = 1);
 
         /// <summary>
         /// Validates a password by specified parameters
@@ -22,6 +22,6 @@ namespace Users.Common.Services
         /// <param name="numbers">Amount of numbers</param>
         /// <param name="specialChars">Amount of special characters</param>
         /// <returns>A response indicating success or failure.</returns>
-        IServiceResponse ValidatePassword(int length, int capitalLetters = 1, int numbers = 1, int specialChars = 1);
+        IServiceResponse ValidatePassword(uint length, uint capitalLetters = 1, uint numbers = 1, uint specialChars = 1);
     }
 }
