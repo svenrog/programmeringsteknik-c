@@ -1,19 +1,23 @@
-﻿using System.Globalization;
+﻿using Microsoft.Extensions.Configuration;
+using System.Globalization;
 
 namespace months
 {
     public class SettingsFactory
     {
-        //private string IConfiguration _configuration;
+        private static IConfiguration _configuration;
 
         static SettingsFactory()
         {
-            
+            var builder = new ConfigurationBuilder();
+
+            _configuration = builder.AddJsonFile("appsettings.json", true, false)
+                                    .Build();
         }
 
         public static CultureInfo GetCulture()
         {
-            string cultureSetting = /*_configuration["culture"] ?? */"sv-SE";
+            string cultureSetting = _configuration["culture"] ?? "sv-SE";
 
             return new CultureInfo(cultureSetting);
         }

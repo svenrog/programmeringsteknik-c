@@ -1,5 +1,9 @@
-﻿using System;
+﻿using currencies.Models;
+using currencies.Services;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 
 namespace currencies
 {
@@ -11,44 +15,42 @@ namespace currencies
             // sedan konverterar en inmatad valuta till svenska kronor.
 
             // Exempelvis: 100 USD, eller 50 GBP
-
-            // Exempelvis: 900 SEK
+            
+            // Exempelvis ut: 900 SEK
 
             // 2. Skapa sedan ett uppslagsverk med valutanamn och skriv ut namnen på valutorna konverteringen sker emellan.
-            // (Valutor lagras på RegionInfo, en egenskap på CultureInfo) 
-
-            // 3. Lägg till ett ytterligare val för valuta att konvertera till (förutom SEK).
+            // (Valutor lagras på RegionInfo, en egenskap på CultureInfo)
+            
+            // Alla CultureInfo-objekt kan hämtas via CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+            
+            // 3. Lägg till ett ytterligare val för valuta att konvertera till (förutom SEK). 
 
             // Exempelvis: 100 USD -> GBP eller AUD
-            
-            List<CurrencyModel> currency = LoadCurrencyData.GetData();
 
-            foreach (var el in currency)
+            string targetCurrency = "SEK";
+            string targetPath = "Resources\\Riksbanken_2020-10-13.csv";
+            MoneyConverter moneyConverter = new MoneyConverter(targetPath, targetCurrency);
+
+            Console.WriteLine("Skriv in önskad växlings-valuta och mängd (t.ex. 100 USD)");
+            string input = Console.ReadLine();
+
+            Console.WriteLine("Skriv vilken valuta du vill växla till (t.ex. GBP)");
+            string currencyInput = Console.ReadLine();
+
+            Money enteredMoney = MoneyParser.Parse(input);
+            Money convertedMoney = moneyConverter.ConvertToTargetCurrency(enteredMoney);
+
+            if (currencyInput != targetCurrency)
             {
-                Console.WriteLine(el.Currency + " " + el.Rate);
+                convertedMoney = moneyConverter.ConvertFromTargetCurrency(convertedMoney.Amount, currencyInput);
             }
 
-            string inputFrom = "NOK";
-            string inputTo = "USD";
-            decimal amountInput = 500;
+            Console.WriteLine($"Dina {enteredMoney} ({GetCurrencyName(enteredMoney)}) blir {convertedMoney} ({GetCurrencyName(convertedMoney)})");
+        }
 
-            //Console.WriteLine("Please write your current currency: ");
-            //inputFrom = Console.ReadLine();
-
-            //Console.WriteLine();
-            //Console.WriteLine("Write the amount you want to exchange: ");
-            //amountInput = decimal.Parse(Console.ReadLine());
-
-            //Console.WriteLine();
-            //Console.WriteLine("Finally write the currency you want to exchange to: ");
-            //inputTo = Console.ReadLine();
-
-            var convertedUserInput = new CurrencyConverter().GetNewCurrency(inputFrom,inputTo,amountInput,currency);
-
-            
-            Console.WriteLine($"You will get {convertedUserInput} {inputTo} after exchange");
-            Console.WriteLine();
-            Console.ReadKey();
+        public static string GetCurrencyName(Money money)
+        {
+            return CurrencyLookup.GetCurrencyName(money.Currency);
         }
     }
 }
