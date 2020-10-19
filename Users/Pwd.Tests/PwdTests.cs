@@ -1,8 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Users.Common.Services;
+using Users.Common;
 
 namespace Pwd.Tests
 {
@@ -57,6 +57,18 @@ namespace Pwd.Tests
             var numberCount = password.Count(x => char.IsDigit(x));
 
             Assert.AreEqual(2, numberCount);
+        }
+
+        [TestMethod]
+        public void correct_amount_of_special_characters()
+        {
+            var passwordService = new PasswordService();
+            var password = passwordService.GeneratePassword(80, 10, 10, 30);
+
+            var specialChar = Constants.Passwords.SpecialCharacters;
+            var specialCount = password.Count(x => specialChar.Contains(x));
+
+            Assert.AreEqual(30, specialCount);
         }
     }
 }

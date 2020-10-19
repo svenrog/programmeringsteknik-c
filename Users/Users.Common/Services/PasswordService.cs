@@ -8,7 +8,7 @@ namespace Users.Common.Services
     {
         private const string _letters = "abcdefghijklmnopqrstuvwxyz";
         private const string _numbers = "1234567890";
-        private const string _special = "$%#@!*?;:^&";
+        private const string _special = Constants.Passwords.SpecialCharacters;
 
         public string GeneratePassword(uint length, uint capitalLetters = 1, uint numbers = 1, uint specialChars = 1)
         {
@@ -19,16 +19,21 @@ namespace Users.Common.Services
 
             for (int i = 0; i < buffer.Length; i++)
             {
-                var currentCharacter = GetRandomLetter();
+                var currentCharacter = GetRandomCharacter(_letters);
 
                 if (i < capitalLetters)
                 {                    
                     currentCharacter = char.ToUpper(currentCharacter);
                 }
-                else if (i < length - numbers)
+                else if (i >= length - specialChars)
                 {
-                    currentCharacter = GetRandomNumber();
+                    currentCharacter = GetRandomCharacter(_special);
                 }
+                else if (i >= length - numbers - specialChars)
+                {
+                    currentCharacter = GetRandomCharacter(_numbers);
+                }               
+                
                 buffer[i] = currentCharacter;
             }
 
@@ -40,16 +45,10 @@ namespace Users.Common.Services
             throw new NotImplementedException();
         }
 
-        private char GetRandomLetter()
+        private char GetRandomCharacter(string input)
         {
-            var position = new Random().Next(0, _letters.Length);
-            return _letters[position];
-        }
-
-        private char GetRandomNumber()
-        {
-            var position = new Random().Next(0, _numbers.Length);
-            return _numbers[position];
+            var position = new Random().Next(0, input.Length);
+            return input[position];
         }
     }
 }
