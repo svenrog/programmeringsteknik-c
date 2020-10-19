@@ -11,7 +11,32 @@ namespace Pwd.Cmd
             // 1. Längd (positivt heltal)
             // 2. Antal stora bokstäver.
             // 3. Antal siffror.
-            // 4. Antal specialtecken.  
+            // 4. Antal specialtecken.
+
+            Console.WriteLine("Password Generator");
+            Console.WriteLine("----------------");
+            Console.WriteLine();
+
+            Console.Write("How many characters do you want your password to be? ");
+            var characterInput = Console.ReadLine();
+            var passwordLength = uint.Parse(characterInput);
+
+            Console.Write("How many uppercase letters? ");
+            var uppercaseInput = Console.ReadLine();
+            var uppercaseCount = uint.Parse(uppercaseInput);
+
+            Console.Write("How many numbers");
+            var numbersInput = Console.ReadLine();
+            var numberCount = uint.Parse(numbersInput);
+
+            Console.Write("How many special characters?");
+            var specialchar = Console.ReadLine();
+            var specialcharCount = uint.Parse(specialchar);
+
+            var passwordGenerator = new PasswordService();
+            var password = passwordGenerator.GeneratePassword(passwordLength,uppercaseCount,numberCount,specialcharCount);
+
+            Console.WriteLine($"Your password is: {password}");
         }
     }
 }
