@@ -22,6 +22,6 @@ namespace Users.Common.Services
         /// <param name="numbers">Amount of numbers</param>
         /// <param name="specialChars">Amount of special characters</param>
         /// <returns>A response indicating success or failure.</returns>
-        IServiceResponse ValidatePassword(uint length, uint capitalLetters = 1, uint numbers = 1, uint specialChars = 1);
+        IServiceResponse ValidatePassword(string password, uint length, uint capitalLetters = 1, uint numbers = 1, uint specialChars = 1);
     }
 }
