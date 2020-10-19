@@ -1,4 +1,5 @@
 ﻿using System;
+using Users.Common.Services;
 
 namespace Pwd.Cmd
 {
@@ -10,7 +11,7 @@ namespace Pwd.Cmd
             // 1. Längd (positivt heltal)
             // 2. Antal stora bokstäver.
             // 3. Antal siffror.
-            // 4. Antal specialtecken.
+            // 4. Antal specialtecken.  
         }
     }
 }
