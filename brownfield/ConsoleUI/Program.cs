@@ -15,7 +15,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             List<TimeSheetEntryModel> timeSheetEntries = GetTimeSheetEntries();
-            List<CustomerModel> customers = CustomerRepository.GetCustomers();
+            List<CustomerModel> customers = CustomerLibrary.GetCustomers();
 
             foreach (var customer in customers)
             {
@@ -23,7 +23,7 @@ namespace ConsoleUI
                 SimulateSendingMail(customer, customerTime);
             }
 
-            List<PaymentModel> payments = PaymentRepository.GetPayments();
+            List<PaymentModel> payments = PaymentLibrary.GetPayments();
 
             var timeWorked = TimeSheetProcessor.CalculateTimeWorked(timeSheetEntries);
             foreach (var paymentModel in payments)
@@ -53,15 +53,14 @@ namespace ConsoleUI
                 Console.Write("How long did you do it for (in hours): ");
                 int hoursDone = int.Parse(Console.ReadLine());
 
-                TimeSheetEntryModel entry = new TimeSheetEntryModel()
-                {
+                TimeSheetEntryModel entry = new TimeSheetEntryModel
+                { 
                     HoursWorked = hoursDone,
                     WorkDone = workDone
                 };
                 timeSheetEntries.Add(entry);
 
-                Console.Write("Do you want to enter more time (Yes/No):");
-                //continueEntering = Console.ReadLine().ToLower() == "yes";
+                Console.Write("Do you want to enter more time (yes/no):");
                 continueEntering = Console.ReadLine().Equals("yes", StringComparison.OrdinalIgnoreCase);
             }
             while (continueEntering == true);
@@ -71,7 +70,7 @@ namespace ConsoleUI
 
         static void SimulatePayment(PaymentModel paymentModel, int hours)
         {
-            decimal amountToPay = PaymentProcessor.ClaculatePayment(paymentModel, hours);
+            decimal amountToPay = PaymentProcessor.CalculatePayment(paymentModel, hours);
 
             Console.WriteLine($"You will get paid ${amountToPay} for your {paymentModel.Label}.");
         }
@@ -82,7 +81,6 @@ namespace ConsoleUI
 
             Console.WriteLine($"Simulating Sending email to {customer.Name}");
             Console.WriteLine($"Your bill is ${amountToBill} for the hours worked.");
-
         }
     }
 }

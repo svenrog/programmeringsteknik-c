@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D1238AAB-BD39-4B46-BCB0-4B9E7CA73A6E}</ProjectGuid>
+    <ProjectGuid>{F9759C72-DAAB-4053-B0B0-4318F5230A5A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TimeSheet.Common</RootNamespace>
@@ -34,8 +34,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\CustomerRepository.cs" />
-    <Compile Include="Data\PaymentRepository.cs" />
+    <Compile Include="Data\CustomerLibrary.cs" />
+    <Compile Include="Data\PaymentLibrary.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="PaymentProcessor.cs" />

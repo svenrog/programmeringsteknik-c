@@ -9,18 +9,11 @@ namespace TimeSheet.Common
     {
         public static int CalculateTimeForCustomer(List<TimeSheetEntryModel> entries, string customerName)
         {
-
-            // Blir lätt grötingt om man gör mer komlicerad, men i detta fall fungerar det ypperligt!
-
-            //return entries.Where(e => e.WorkDone.ToLower().Contains(customerName))
-            //                 .Sum(e => e.HoursWorked);
-
             int sum = 0;
 
             foreach (var entry in entries)
             {
                 int customerIndex = entry.WorkDone.IndexOf(customerName, StringComparison.OrdinalIgnoreCase);
-
                 if (customerIndex >= 0)
                 {
                     sum += entry.HoursWorked;
@@ -32,18 +25,10 @@ namespace TimeSheet.Common
 
         public static int CalculateTimeWorked(List<TimeSheetEntryModel> entries) =>
             entries.Sum(x => x.HoursWorked);
-        //{
+        
 
-        ////    //int sum = 0;
-
-        ////    //foreach (var entry in entries)
-        ////    //{
-        ////    //    sum += entry.HoursWorked;
-        ////    //}
-
-        ////    //return sum;
-
-        //    return entries.Sum(x => x.HoursWorked);
-        //}
+        public static int CalculateTimeAsLambda (List<TimeSheetEntryModel> e, string c) =>
+            e.Where(x => x.WorkDone.ToLower().Contains(c))
+             .Sum(x => x.HoursWorked);
     }
 }

@@ -1,5 +1,4 @@
 ﻿
-
 namespace TimeSheet.Common.Models
 {
     public class CustomerModel
