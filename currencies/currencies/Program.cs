@@ -28,8 +28,8 @@ namespace currencies
                 Console.WriteLine(el.Currency + " " + el.Rate);
             }
 
-            string inputFrom = "USA";
-            string inputTo = "NOK";
+            string inputFrom = "NOK";
+            string inputTo = "USD";
             decimal amountInput = 500;
 
             //Console.WriteLine("Please write your current currency: ");

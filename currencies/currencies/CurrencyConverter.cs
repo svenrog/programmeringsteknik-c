@@ -24,24 +24,24 @@ namespace currencies
                     toCurrency = item.Rate;
                 }
             }
-            
+
             //From targetCurrency division
             //To   targetCurrency multi
 
-            //foreach(var section in currency)
-            //{
-            //    if (section.Currency.Contains(inputTo))
-            //    {
-            //        if (section.Section == 100)
-            //        {
-            //            result = amount * (fromCurrency / toCurrency);
-            //        }
-            //        else if (section.Section == 1)
-            //        {
-            //            result = amount * (toCurrency / fromCurrency);
-            //        }                 
-            //    }                
-            //}           
+            foreach (var section in currency)
+            {
+                if (section.Currency.Contains(inputTo))
+                {
+                    if (section.Section == 1)
+                    {
+                        result = amount * (fromCurrency / toCurrency);
+                    }
+                    else if (section.Section == 100)
+                    {
+                        result = amount * (toCurrency / fromCurrency);
+                    }
+                }
+            }
             return Math.Round(result,2);
         }
     }
