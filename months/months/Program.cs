@@ -16,10 +16,10 @@ namespace months
 
             Console.WriteLine("Vänligen skriv in en siffra, heltal, fr.o.m. 1 t.o.m. 12, utan något annat tecken, för att få ut motsvarande månad.");
             int input = Test.Input();
+
             Console.WriteLine(months[input]);
 
-            Console.WriteLine(DateTime.Parse($"1900-{input}-01").Month);
-            
+            Console.WriteLine(DateTime.Parse($"1900-{input}-01").Month);            
         }
     }
 }
