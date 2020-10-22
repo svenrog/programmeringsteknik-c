@@ -1,12 +1,9 @@
 ﻿using CommandLine;
 using Imageflow.Fluent;
-using System;
 using System.IO;
 
 namespace Resizer
 {
-
-    // Funkar endast med NugGet CommandLine Parser
     class Options
     {
         [Option('i', "input", Required = true, HelpText = "Path to input file.")]
@@ -38,46 +35,40 @@ namespace Resizer
             // Options-objektet behöver skapas från args
             // https://github.com/commandlineparser/commandline#quick-start-examples
 
-
-            // 1. Skala om en bild beroende på angiven breddparameter, tex. 512px - I Debuggen
+            
+            // 1. Skala om en bild beroende på angiven breddparameter, tex. 512 pixlar
             // 2. Lägg till en höjdparameter och skala om beroende på dessa.
             // 3. Lägg till ett skärpefilter om bildens storlek minskas.
             // 4. Lägg till parametrar för färgmättnad, ljusstyrka och kontrast.
 
-            Parser.Default.ParseArguments<Options>(args) //Utveckla vidare, läs in directory i args. Directory.RunFiles (?)
-                            .WithParsed<Options>(Run);
+            Parser.Default.ParseArguments<Options>(args)
+                          .WithParsed<Options>(Run);
         }
 
         static void Run(Options options)
         {
+            var directory = Path.GetDirectoryName(options.Input);
+            var files = Directory.GetFiles(directory, "*.jpg");
 
-            using (var stream = File.OpenRead(options.Input)) //ingående fil
+            foreach (var filePath in files)
             {
-                var outputFileName = GetOutputFileName(options.Input);
-                //Test
-                using (var outStream = new FileStream(outputFileName, FileMode.Create, FileAccess.Write)) // Skriver inte över filen File.OpenWrite(outputFileName)) // utgående fil
+                using (var stream = File.OpenRead(filePath))
                 {
+                    var outputFileName = GetOutputFileName(filePath);
 
-                    //var hints = new ResampleHints
-                    //{
-                    //    SharpenWhen = SharpenWhen.Downscaling,
-                    //    SharpenPercent = 0
-                    //};
-
-                    using (var job = new ImageJob())
+                    using (var outStream = new FileStream(outputFileName, FileMode.Create, FileAccess.Write))
                     {
-                        job.Decode(stream, false)
-                        #region // Här kan man ändra bilden innan den skrivs ut
-                            //.ContrastSrgb(50)
-                            .SaturationSrgb(-50)
-                            //.ConstrainWithin(options.Width, options.Height, hints)
-                            //.Distort(812, 512)
 
-                        #endregion
-                            .EncodeToStream(outStream, false, new MozJpegEncoder(90))
-                            .Finish()
-                            .InProcessAsync()
-                            .Wait();
+                        using (var job = new ImageJob())
+                        {
+                            job.Decode(stream, false)
+                               .ConstrainWithin(options.Width, options.Height)
+                               .ColorFilterSrgb(ColorFilterSrgb.Grayscale_Bt709)
+                               .EncodeToStream(outStream, false, new MozJpegEncoder(90))
+                               .Finish()
+                               .InProcessAsync()
+                               .Wait();
+                        }
                     }
                 }
             }
@@ -86,10 +77,10 @@ namespace Resizer
         static string GetOutputFileName(string path)
         {
             string directory = Path.GetDirectoryName(path);
-            string fileName = Path.GetFileNameWithoutExtension(path); 
-            string extenstion = Path.GetExtension(path);  // extension = tex. .Json .Img
+            string fileName = Path.GetFileNameWithoutExtension(path);
+            string extension = Path.GetExtension(path);
 
-            string newFileName = $"{directory}{fileName}-resized{extenstion}";
+            string newFileName = $"{fileName}-resized{extension}";
 
             return Path.Combine(directory, newFileName);
         }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace currencies.Services
 {
@@ -26,13 +27,14 @@ namespace currencies.Services
 
             return new Money(convertedAmount, _targetCurrency);
         }
+
         public Money ConvertFromTargetCurrency(decimal amount, string currency)
         {
             ExchangeRate rate = _exchangeRates[currency];
 
-            decimal convertedAMount = amount / rate.ConversionRate;
+            decimal convertedAmount = amount / rate.ConversionRate;
 
-            return new Money(convertedAMount, currency);
+            return new Money(convertedAmount, currency);
         }
 
         private void ReadFile(string filePath)
@@ -47,6 +49,7 @@ namespace currencies.Services
                         try
                         {
                             ExchangeRate rate = ExchangeRateParser.Parse(line);
+
                             _exchangeRates.Add(rate.Currency, rate);
                         }
                         catch (Exception ex)

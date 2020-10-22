@@ -10,15 +10,13 @@ using Error = CommandLine.Error;
 
 namespace Search.Client
 {
-
-    //ElasticServers används ute i arbetslivet. SKA KUNNA! (Kolla upp EMVP, APIkunnig)
     class Program
     {
         static void Main(string[] args)
         {
             Parser.Default.ParseArguments<SearchOptions, IndexOptions>(args)
                           .MapResult<SearchOptions, IndexOptions, object>(Search, Index, Error);
-        }                   //Måste ha return om Parser innehåller .MapResult (Det behöver bara returnera true / false)
+        }
 
         static object Search(SearchOptions options)
         {
@@ -30,39 +28,23 @@ namespace Search.Client
             // Dokumentation över hur man ställer frågor
             // https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/writing-queries.html
 
-            // 1. Hitta 20 recept som innehåller ordet "fisk". Kolla guiden ovan.
+            // 1. Hitta 20 recept som innehåller ordet "fisk".
             // 2. Sortera sökträffarna efter rating.
             // 3. Räkna alla recept som är upplagda av Per Morberg.
             // 4. Hitta 30 recept som tillhör kategorin Bönor.
             // 5. Räkna alla recept som har en tillagningstid på under 10 minuter (tips: TimeSpan lagras som ticks i index).
 
-            //Query är strukturerad sökning queryOnQueryString är
+            //var result = client.Search(search => search.QueryOnQueryString(options.Query)
+            //                                           .Sort(order => order.Descending(field => field.Rating))
+            //                                           .Take(20));
 
-            // Standardsök innehåller 10 st resultat: var result = client.Search(s => s.QueryOnQueryString(options.Query));
-            //var result = client.Search(s => s.QueryOnQueryString(options.Query)
-            //                                    .Take(20)
-            //                                    .Sort(r => r.Descending(d => d.Rating)
-            //                                    .Ascending(a => a.Name)));
+            //Fråga mot specifikt fält
+            //var result = client.Count(search => search.Query(
+            //                                      query => query.Match(
+            //                                          match => match.Field(field => field.Author)
+            //                                                        .Query("Per Morberg"))));
 
-            // Hur man söker på ett specifikt fält ("Per Morberg") client.Count = träffar på Author(Flera hundra), client.Search = recept med Morberg.
-            //var result = client.Search(search => search.Query(
-            //                                            query => query.Match(
-            //                                                match => match.Field(field => field.Author)
-            //                                                                .Query("Per Morberg"))));
-            // Samma som ovan fast med QueryOnQueryString
-            //var result = client.Count(search => search.QueryOnQueryString("author:\"Per Morberg\""));
-
-            //var result = client.Search(search => search.Query(
-            //                                            query => query.Match(
-            //                                                match => match.Field(
-            //                                                    field => field.Categories)
-            //                                                                    .Query("Bönor")))
-            //                                                                    .Take(30));
-
-            var result = client.Count(count => count.Query(query => query.Range(
-                                                                            range => range.Field(
-                                                                                field => field.TimeToCook).LessThan(6000000000))));
-                                                                                            
+            var result = client.Search(search => search.QueryOnQueryString("categories:\"Bönor\""));
 
             return 0;
         }

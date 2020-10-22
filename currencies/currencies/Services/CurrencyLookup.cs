@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace currencies.Services
 {
@@ -35,9 +36,7 @@ namespace currencies.Services
                     continue;
 
                 _currencies.Add(region.ISOCurrencySymbol, region.CurrencyEnglishName);
-                
             }
         }
-
     }
 }

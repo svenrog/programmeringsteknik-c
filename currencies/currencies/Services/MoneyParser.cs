@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace currencies.Services
 {
-    public static class MoneyParser
+    public class MoneyParser
     {
         public static Money Parse(string input)
         {
@@ -16,7 +16,6 @@ namespace currencies.Services
             decimal amount = ParseAmount(data[0]);
 
             return new Money(amount, data[1]);
-
         }
 
         public static decimal ParseAmount(string input)
