@@ -14,7 +14,7 @@ namespace Users.Common.Services
         {
             if (capitalLetters + numbers + specialChars > length)
             {
-                throw new ArgumentOutOfRangeException("Capital letters, numbers and special characters exceed length.");
+                throw new ArgumentOutOfRangeException("Capital letters, numbers and special characters exceed length. Try again");
             }
 
             var buffer = new char[length];
@@ -44,9 +44,10 @@ namespace Users.Common.Services
             return new string(buffer);
         }
 
-        public IServiceResponse ValidatePassword(/*string password */uint length, uint capitalLetters = 1, uint numbers = 1, uint specialChars = 1)
+        public IServiceResponse ValidatePassword(uint length, uint capitalLetters = 3, uint numbers = 2, uint specialChars = 2)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Password Succecfully Added!");
+            return null;
         }
 
         private char GetRandomCharacter(string input)
