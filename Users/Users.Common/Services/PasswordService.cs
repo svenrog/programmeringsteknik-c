@@ -11,6 +11,9 @@ namespace Users.Common.Services
 
         public string GeneratePassword(uint length, uint capitalLetters = 1, uint numbers = 1, uint specialChars = 1)
         {
+            if (capitalLetters + numbers + specialChars > length)
+                throw new ArgumentOutOfRangeException("Capital letters, numbers and special characters exceed length of password");
+
             throw new NotImplementedException();
         }
 
