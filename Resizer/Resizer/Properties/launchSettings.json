@@ -2,7 +2,7 @@
   "profiles": {
     "Resizer": {
       "commandName": "Project",
-      "commandLineArgs": "-i \".\\images\\image1.jpg\""
+      "commandLineArgs": "-i \".\\images\\image1.jpg\" -w 512 -h 400"
     }
   }
 }
