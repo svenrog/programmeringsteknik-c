@@ -1,4 +1,6 @@
-﻿using System;
+﻿using currencies.Models;
+using currencies.Services;
+using System;
 using System.Collections.Generic;
 
 namespace currencies
@@ -9,6 +11,10 @@ namespace currencies
         {
             // 1. Skriv ett program som läser in en fil med växlingskurser och
             // sedan konverterar en inmatad valuta till svenska kronor.
+
+            // Exempelvis: 100 USD, eller 50 GBP
+            
+            // Exempelvis ut: 900 SEK
 
             // 2. Skapa sedan ett uppslagsverk med valutanamn och skriv ut namnen på valutorna konverteringen sker emellan.
             // (Valutor lagras på RegionInfo, en egenskap på CultureInfo) 
