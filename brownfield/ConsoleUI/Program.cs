@@ -15,7 +15,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             List<TimeSheetEntryModel> timeSheetEntries = GetTimeSheetEntries();
-            List<CustomerModel> customers = CustomerLibrary.GetCustomers();
+            List<CustomerModel> customers = CustomerRepository.GetCustomers();
 
             foreach (var customer in customers)
             {
@@ -23,7 +23,11 @@ namespace ConsoleUI
                 SimulateSendingMail(customer, customerTime);
             }
 
+<<<<<<<<< Temporary merge branch 1
             List<PaymentModel> payments = PaymentLibrary.GetPayments();
+=========
+            List<PaymentModel> payments = PaymentRepository.GetPayments();
+>>>>>>>>> Temporary merge branch 2
 
             var timeWorked = TimeSheetProcessor.CalculateTimeWorked(timeSheetEntries);
             foreach (var paymentModel in payments)
@@ -53,14 +57,24 @@ namespace ConsoleUI
                 Console.Write("How long did you do it for (in hours): ");
                 int hoursDone = int.Parse(Console.ReadLine());
 
+<<<<<<<<< Temporary merge branch 1
                 TimeSheetEntryModel entry = new TimeSheetEntryModel
                 { 
+=========
+                TimeSheetEntryModel entry = new TimeSheetEntryModel()
+                {
+>>>>>>>>> Temporary merge branch 2
                     HoursWorked = hoursDone,
                     WorkDone = workDone
                 };
                 timeSheetEntries.Add(entry);
 
+<<<<<<<<< Temporary merge branch 1
                 Console.Write("Do you want to enter more time (yes/no):");
+=========
+                Console.Write("Do you want to enter more time (Yes/No):");
+                //continueEntering = Console.ReadLine().ToLower() == "yes";
+>>>>>>>>> Temporary merge branch 2
                 continueEntering = Console.ReadLine().Equals("yes", StringComparison.OrdinalIgnoreCase);
             }
             while (continueEntering == true);
@@ -70,7 +84,11 @@ namespace ConsoleUI
 
         static void SimulatePayment(PaymentModel paymentModel, int hours)
         {
+<<<<<<<<< Temporary merge branch 1
             decimal amountToPay = PaymentProcessor.CalculatePayment(paymentModel, hours);
+=========
+            decimal amountToPay = PaymentProcessor.ClaculatePayment(paymentModel, hours);
+>>>>>>>>> Temporary merge branch 2
 
             Console.WriteLine($"You will get paid ${amountToPay} for your {paymentModel.Label}.");
         }
@@ -81,6 +99,10 @@ namespace ConsoleUI
 
             Console.WriteLine($"Simulating Sending email to {customer.Name}");
             Console.WriteLine($"Your bill is ${amountToBill} for the hours worked.");
+<<<<<<<<< Temporary merge branch 1
+=========
+
+>>>>>>>>> Temporary merge branch 2
         }
     }
 }
