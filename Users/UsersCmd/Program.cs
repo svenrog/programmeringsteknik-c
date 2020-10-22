@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Transactions;
+using Users.Common.Services;
+using Users.Common.Tools;
 
 namespace Users.Cmd
 {
@@ -24,6 +27,16 @@ namespace Users.Cmd
             // Lösenord har vanligtvis löjliga/svåra lösenordsregelkrav pga brute force-algoritmer.
             // Normalt skickar man en epost med länk till användaren som registrerats.
             // Användaren får efter klick på verifieringslänk ange ett lösenord i en maskad inmatning.
+
+            //Common.Database.Scrubber.DeleteDatabase();
+
+            for (int i = 0; i < 50; i++)
+            {
+                UserLogin.CreateUser($"user{i}", $"password{i}");
+            }
+
+            UserLogin.Init();
+            Common.Database.Scrubber.Run();
         }
     }
 }
