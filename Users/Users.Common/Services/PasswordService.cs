@@ -97,51 +97,50 @@ namespace Users.Common.Services
 
         public IServiceResponse ValidatePassword(string password, uint length, uint capitalLetters = 1, uint numbers = 1, uint specialChars = 1)
         {
-            throw new NotImplementedException();
-            //ServiceResponse serviceResponse = new ServiceResponse();
-            //uint capitalLettersCount = 0;
-            //uint numbersCount = 0;
-            //uint specialCharsCount = 0;
+            ServiceResponse serviceResponse = new ServiceResponse();
+            uint capitalLettersCount = 0;
+            uint numbersCount = 0;
+            uint specialCharsCount = 0;
 
-            //foreach (char symbol in password)
-            //{
-            //    if (_letters.ToUpper().Contains(symbol))
-            //    {
-            //        capitalLettersCount++;
-            //        continue;
-            //    }
+            foreach (char symbol in password)
+            {
+                if (_letters.ToUpper().Contains(symbol))
+                {
+                    capitalLettersCount++;
+                    continue;
+                }
 
-            //    if (_numbers.Contains(symbol))
-            //    {
-            //        numbersCount++;
-            //        continue;
-            //    }
-            //    if (_special.Contains(symbol))
-            //    {
-            //        specialCharsCount++;
-            //        continue;
-            //    }
-            //}
-            //if (length == password.Length
-            //    && capitalLetters == capitalLettersCount
-            //    && numbers == numbersCount
-            //    && specialChars == specialCharsCount)
-            //{
-            //    serviceResponse.Success = true;
-            //    serviceResponse.Message = "Password validation success";
-            //}
-            //else
-            //{
-            //    serviceResponse.Success = false;
-            //    serviceResponse.Message = "Password validation not successful";
-            //    serviceResponse.Exception = new ArgumentOutOfRangeException(
-            //        $"Length: {password.Length}\n" +
-            //        $"Capital letters: {capitalLettersCount}\n" +
-            //        $"Numbers: {numbersCount}\n" +
-            //        $"Special characters: {specialCharsCount}");
-            //}
+                if (_numbers.Contains(symbol))
+                {
+                    numbersCount++;
+                    continue;
+                }
+                if (_special.Contains(symbol))
+                {
+                    specialCharsCount++;
+                    continue;
+                }
+            }
+            if (length == password.Length
+                && capitalLetters == capitalLettersCount
+                && numbers == numbersCount
+                && specialChars == specialCharsCount)
+            {
+                serviceResponse.Success = true;
+                serviceResponse.Message = "Password validation success";
+            }
+            else
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = "Password validation not successful";
+                serviceResponse.Exception = new ArgumentOutOfRangeException(
+                    $"Length: {password.Length}\n" +
+                    $"Capital letters: {capitalLettersCount}\n" +
+                    $"Numbers: {numbersCount}\n" +
+                    $"Special characters: {specialCharsCount}");
+            }
 
-            //return serviceResponse;
+            return serviceResponse;
         }
         private char GetRandomCharecter(string chareckters)
         {
@@ -149,10 +148,10 @@ namespace Users.Common.Services
             return chareckters[position];
         }
 }
-    //public class ServiceResponse : IServiceResponse
-    //{
-    //    public bool Success { get; set; }
-    //    public string Message { get; set; }
-    //    public Exception Exception { get; set; }
-    //}
+    public class ServiceResponse : IServiceResponse
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public Exception Exception { get; set; }
+    }
 }
