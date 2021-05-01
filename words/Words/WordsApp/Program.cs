@@ -7,51 +7,45 @@ namespace WordsApp
     {
         static void Main(string[] args)
         {
-            // Skriv en konsolapplikation som tar emot en skriven text.
-            Console.WriteLine("Enter a string, preferrably containing a sentence.");
-
-            char[] vowels = new char[] { 'a', 'o', 'i', 'e', 'u', 'y', 'å', 'ä', 'ö' };
-
-            string enteredString = Console.ReadLine();
-            string lowercaseString = enteredString.ToLower();
-            
-            string[] words = lowercaseString.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-            int vowelCount = 0;
-            int wordCount = words.Length;
-            string longestWord = string.Empty;
-
-
-            // Dubbel foreach-loop
-            foreach (var word in words)
-            {
-                foreach (var character in word)
-                {
-                    if (vowels.Contains(character))
-                    {
-                        vowelCount++;
-                    }
-                }
-
-                if (word.Length > longestWord.Length)
-                {
-                    longestWord = word;
-                }
-            }
-
-            // Man kan även loopa strängar på detta sätt
-            for (var i = 0; i < enteredString.Length; i++)
-            {
-                var character = enteredString[i];
-            }
+            //Skriv en konsolapplikation som tar emot en skriven text.
 
             // Vi vill ha ut följande:
-            // Antal ord?
-            // Antal vokaler?
+            // Antal ord
+            // Antal vokaler
             // Vilket är det längsta ordet?
 
-            Console.WriteLine("Word count: " + wordCount);
-            Console.WriteLine("Vowel count: " + vowelCount);
-            Console.WriteLine("Longest word: " + longestWord + ", " + longestWord.Length + " characters.");
+            // Word count
+            // Vocal count - done
+            // Longest word
+
+            Console.Write("Hello user, please enter some info to be stored and sorted: ");
+            string input = Console.ReadLine();
+            string inputToLower = input.ToLower();
+
+            string[] words = inputToLower.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+            int wordsCount = 0;
+            string longestWord = "";
+            foreach (var el in words)
+            {
+                if (longestWord.Length < el.Length)
+                {
+                    longestWord = el;
+                }
+                wordsCount++;
+            }
+
+            char[] vocals = new[] { 'a', 'o', 'i', 'e', 'u', 'y', 'å', 'ä', 'ö' };
+
+            int vocalCount = 0;
+            foreach (var el in inputToLower)
+            {
+                if (vocals.Contains(el))
+                {
+                    vocalCount++;
+                }
+            }
+            Console.WriteLine($"There are: {wordsCount} words and {vocalCount} vocals in this string. The longest word is: {longestWord}");
         }
     }
 }

@@ -16,15 +16,17 @@ namespace RecipeScraper
         {
             // Klockan är 03:35, måste bara få detta att funka till imorgon.
             var list = new List<Recipe>();
-            var addresses = new List<string>
+            var adresses = new List<string>
             {
+                //Alla adresser                
                 "https://www.koket.se/smorstekt-torskrygg-med-pestoslungad-blomkal-och-sparris",
                 "https://www.koket.se/vegoburgare-med-tryffelmajonnas",
                 "https://www.koket.se/smakrik-o-lrisotto-med-vitlo-ksrostad-tomat-citronsparris-och-het-chorizo",
                 "https://www.koket.se/smorbakad-spetskal-med-krispig-kyckling-och-graddskum"
+
             };
 
-            foreach (var url in addresses)
+            foreach (var url in adresses)
             {
                 var recipe = Scraper.GetRecipe(url);
                 list.Add(recipe);
@@ -32,20 +34,20 @@ namespace RecipeScraper
 
             try
             {
-                foreach (var recipe in list)
+                foreach(var recipe in list)
                 {
-                    Console.WriteLine($"Recept: {recipe.Name}");
+                    Console.WriteLine(@$"Recept: {recipe.Name}");
                     Console.WriteLine("-------");
                     Console.WriteLine(recipe.Description.Trim());
                     Console.WriteLine("-------");
                     Console.WriteLine("Ingredienser:");
 
-                    foreach (var ingredient in recipe.Ingredients)
+                    foreach(var ingredient in recipe.Ingredients)
                     {
                         if (ingredient.Amount == 0)
                             Console.WriteLine(ingredient.Name);
                         else
-                            Console.WriteLine($"{ingredient.Amount} {ingredient.Unit} {ingredient.Name}");
+                            Console.WriteLine(ingredient.Amount.ToString() + " " + ingredient.Unit + " " + ingredient.Name);
                     }
 
                     Console.WriteLine("-------");
@@ -53,11 +55,10 @@ namespace RecipeScraper
 
                     var stepCount = 1;
 
-                    foreach (var step in recipe.Steps)
+                    foreach(var step in recipe.Steps)
                     {
-                         Console.WriteLine($"{stepCount++}: {step.Text}");
+                        Console.WriteLine((stepCount++).ToString() + ": " + step.Text);
                     }
-
                     Console.WriteLine();
                 }
             }

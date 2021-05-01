@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TimeSheet.Common\TimeSheet.Common.csproj">
-      <Project>{f9759c72-daab-4053-b0b0-4318f5230a5a}</Project>
+      <Project>{e6e975c5-fff1-47ec-82cc-1b6cbb5f06dc}</Project>
       <Name>TimeSheet.Common</Name>
     </ProjectReference>
   </ItemGroup>

@@ -11,21 +11,28 @@ namespace months
             // och konverterar siffran till ett månadsnamn på svenska
             // programmet skall kasta ett fel om den inmatade siffran är något annat än 1-12.
 
-            Console.Write("Enter a number (1-12): ");
+            //int result = 0;
+            //while (result < 1)                
+            //    while (!int.TryParse(Console.ReadLine(), out result));
+
+
+
+            Console.Write("Enter a number (1-12):");
             string input = Console.ReadLine();
             int monthNumber = int.Parse(input);
-
-            if (monthNumber < 1 || monthNumber > 12)
-                throw new ArgumentOutOfRangeException(nameof(input), "value must be, or be between 1 and 12");
 
             CultureInfo culture = SettingsFactory.GetCulture();
             DateTimeFormatInfo dateFormat = culture.DateTimeFormat;
             TextInfo textFormat = culture.TextInfo;
 
+            if ( monthNumber < 1 ||  monthNumber > 12)
+            {
+                throw new Exception("Number is out of range");
+            }
             string monthName = dateFormat.GetMonthName(monthNumber);
-            string monthNameFormatted = textFormat.ToTitleCase(monthName);
+            string monthNameFormat = textFormat.ToTitleCase(monthName);
 
-            Console.WriteLine(monthNameFormatted);
+
         }
     }
 }

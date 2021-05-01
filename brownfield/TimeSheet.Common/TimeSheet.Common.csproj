@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F9759C72-DAAB-4053-B0B0-4318F5230A5A}</ProjectGuid>
+    <ProjectGuid>{E6E975C5-FFF1-47EC-82CC-1B6CBB5F06DC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TimeSheet.Common</RootNamespace>

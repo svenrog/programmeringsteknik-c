@@ -5,9 +5,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Pwd.Tests\Pwd.Tests.csproj" />
-    <ProjectReference Include="..\Users.Common\Users.Common.csproj" />
-  </ItemGroup>
-
 </Project>

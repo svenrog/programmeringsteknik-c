@@ -1,4 +1,5 @@
-﻿namespace TimeSheet.Common.Models
+﻿
+namespace TimeSheet.Common.Models
 {
     public class TimeSheetEntryModel
     {

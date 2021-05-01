@@ -8,6 +8,7 @@ namespace FlagApp
         {
             // Skapa en applikation som ritar ut svenska flaggan
             // Använd metoder för att göra utritningen generell
+            Draw.DrawFlag();
         }
     }
 }
